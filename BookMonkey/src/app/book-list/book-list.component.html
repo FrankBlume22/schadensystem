@@ -1,0 +1,18 @@
+<div class="ui middle aligned selection divided list">  <!-- Element des Styleframeworks Semantic UI -->
+  <a *ngFor="let book of books" class="item">           <!-- ngFor wiederholt das Element <a class="item"> für jedes Buch, also 2 x -->
+    <img class="ui tiny image"
+     *ngIf="book.thumbnails && book.thumbnails[0] && book.thumbnails[0].url"
+     [src]="book.thumbnails[0].url" [title]="book.thumbnails[0].title"> <!-- Die Bilddatei wird eingelesen -->
+    <div class="content">                               <!-- Der Content wird geöffnet -->
+      <div class="header">{{ book.title }}</div>        <!-- Der Buchtitel wird geschrieben -->
+      <div *ngIf="book.subtitle" class="description">{{ book.subtitle }}</div>  <!-- Ist ein subtitle bekannt, wird er eingefügt -->
+      <div class="metadata">
+        <span *ngFor="let author of book.authors; last as letzter">  <!-- Die Autoren werden aus einer Tabelle eingefügt -->
+          {{ author }}<span *ngIf="!letzter">, </span>  <!-- Wurde der letzte Tabelleneintrag gelesen ist 'letzter' = wahr -->
+        </span>                                         <!-- Solange letzter = unwahr, wird ein Komma ausgegeben -->
+        <br>
+        ISBN {{ book.isbn }}  <!-- Der String "ISBN " wird geschrieben und der Inhalt des aktuellen DOM-Property wird angehängt -->
+      </div>
+    </div>
+  </a>
+</div>
