@@ -1,11 +1,5 @@
-<bm-book-list
-  *ngIf="viewState === 'list'"
-  (showDetailsEvent)="showDetails($event)"></bm-book-list>
-  <!-- Das Event showDetailsEvent übermittelt in seinem Event-Payload das ausgewählte Buch -->
-  <!-- Dieses Buch wird im Property book gespeichert. Von dort aus übergeben wir das -->
-  <!-- Objekt an die BookDetailsComponent -->
-<bm-book-details
-  *ngIf="viewState === 'details'"
-  (showListEvent)="showList()" [book]='book'></bm-book-details>
-
+<div class="ui menu">
+  <a routerLink="home" routerLinkActive="active" class="item">Home</a>
+  <a routerLink="books" routerLinkActive="active" class="item">Bücher</a>
+</div>
 <router-outlet></router-outlet>

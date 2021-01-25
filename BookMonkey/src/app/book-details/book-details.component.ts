@@ -1,6 +1,8 @@
-import { newArray } from '@angular/compiler/src/util';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
 import { Book } from '../shared/book';
+import { BookStoreService } from '../shared/book-store.service';
 
 @Component({
   selector: 'bm-book-details',
@@ -8,24 +10,21 @@ import { Book } from '../shared/book';
   styleUrls: ['./book-details.component.css']
 })
 export class BookDetailsComponent implements OnInit {
-  @Input() book!: Book;
-  @Output() showListEvent = new EventEmitter<any>();  // Eigenschaft showListEvent
-     // Wird der Button angeklickt, soll ein Event nach oben in die
-     // Hauptkomponente geschickt werden.
-     // Der name des Propertys ist automatisch der Name des Events.
-     // Um das Event auszulösen erzeugen wir einen EventEmitter (OHNE echten Parameter).
+  book!: Book;
 
-  ngOnInit(): void {
+  constructor(
+    private bs: BookStoreService,
+    private route: ActivatedRoute
+  ) { }
+
+  // tslint:disable-next-line: typedef
+  ngOnInit() {
+    const params = this.route.snapshot.paramMap;
+    this.book = this.bs.getSingle(params.get('isbn'));
   }
 
   // tslint:disable-next-line: typedef
-  getRating(num: number){     // Für die Bewertung des Buchs sollen im Template Sterne angezeigt werden.
-    return new Array(num);    // Die Methode gibt dazu ein Array mit leeren Elementen zurück.
-  }                           // Es wird als Basis genutzt, um die Sterne mit *ngFor mehrfach anzuzeigen
-
-  // tslint:disable-next-line: typedef
-  showBookList(){
-    this.showListEvent.emit(); // Die Methode löst das Event für die Elternkomponente aus,
-  }                            // dass die Ansicht gewechselt werden soll
-
+  getRating(num: number) {
+    return new Array(num);
+  }
 }
