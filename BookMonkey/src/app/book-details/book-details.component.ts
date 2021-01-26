@@ -11,6 +11,7 @@ import { BookStoreService } from '../shared/book-store.service';
 })
 export class BookDetailsComponent implements OnInit {
   book!: Book;
+  isbnUebergabe!: string;
 
   constructor(
     private bs: BookStoreService,
@@ -20,7 +21,9 @@ export class BookDetailsComponent implements OnInit {
   // tslint:disable-next-line: typedef
   ngOnInit() {
     const params = this.route.snapshot.paramMap;
-    this.book = this.bs.getSingle(params.get('isbn'));
+    this.isbnUebergabe = params.get('isbn');
+//  this.book = this.bs.getSingle(params.get('isbn'));
+    this.book = this.bs.getSingle(this.isbnUebergabe);
   }
 
   // tslint:disable-next-line: typedef

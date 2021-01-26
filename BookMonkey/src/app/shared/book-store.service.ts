@@ -41,6 +41,6 @@ export class BookStoreService {
         return this.books;  // Gibt die Tabelle mit allen Büchern zurück
      }
      getSingle(isbnEingang: string): Book {
-        return this.books.find(book => book.isbn === isbnEingang);
+        return this.books.find(book => book.isbn === isbnEingang);   // Gibt genau EIN Buch zurück
      }
 }

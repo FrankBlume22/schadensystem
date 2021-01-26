@@ -10,7 +10,7 @@ export const routes: Routes = [
     // Beim Start der Anwendung ist für "/" (das root-Verzeichnis) keine Route vorhanden.
     // Wir legen deshalb fest, das der Root-Pfad auf die URL /home weiterleiten soll,
     // damit der User sofort auf die Startseite gelangt. Die Angabe pathMatch. "full",
-    // sorget dafür, das die Route auch wirklich greift und nicht als Präfix einer anderen
+    // sorgt dafür, das die Route auch wirklich greift und nicht als Präfix einer anderen
     // interpretiert wird.
     path: '',
     redirectTo: 'home',
