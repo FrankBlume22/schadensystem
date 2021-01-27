@@ -16,8 +16,8 @@ export class BookListComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   ngOnInit() {
-    this.books = this.bs.getAll();
+    this.bs.getAll().subscribe(res => this.books = res);
     // Der Konstruktor hat bereits das Objekt "bs" des Service BookStoreService aufgebaut.
-    // Jetzt holen wir die Tabelle der Bücher aus dem Service und speichern sie in unserer Komponente
+    // Wir abonnieren das Observable der Büchertabelle
   }
 }

@@ -1,46 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Book } from './book';
+import { HttpClient, HttpClientModule } from '@angular/common/http';  // Neu mit Iteration 3
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'    // Sorgt für die automatische Registrierung im Root-Modul
 })
 export class BookStoreService {
-  books: Book[] = [];
+  private api = 'https://api3.angular-buch.com';
 
-  constructor() {       // Im Konstruktor wird das Service-Property "books" aufgebaut und gefüllt
-    this.books = [
-      {
-        isbn: '9783864906466',
-        title: 'Angular',
-        authors: ['Ferdinand Malcher', 'Johannes Hoppe', 'Danny Koppenhagen'],
-        published: new Date(2019, 4, 30),
-        subtitle: 'Grundlagen, fortgeschrittene Themen und Best Practices - mit NativeScript und NgRx',
-        rating: 5,
-        thumbnails: [{
-          url: 'https://ng-buch.de/buch1.jpg',
-          title: 'Buchcover'
-        }],
-        description: 'Die Autoren führen Sie mit einem anspruchsvollen Beispielprojekt durch die Welt von Angular...'
-      },
-      {
-        isbn: '9783864903274',
-        title: 'React',
-        authors: ['Oliver Zeigermann', 'Nils Hartmann'],
-        published: new Date(2016, 6, 17),
-        subtitle: 'Die praktische Einführung in React, React Router und Redux',
-        rating: 3,
-        thumbnails: [{
-          url: 'https://ng-buch.de/buch2.jpg',
-          title: 'Buchcover'
-        }],
-        description: 'React ist ein JavaScript-Framework zur Entwicklung von Benutzeroberflächen...'
-      }
-    ];
+  constructor(private http: HttpClient){}
+
+  getAll(): Observable<Book[]> {
+    return this.http.get<any[]>(`${this.api}/books`);  // Gibt die Tabelle mit allen Büchern zurück
   }
-     getAll(): Book[] {
-        return this.books;  // Gibt die Tabelle mit allen Büchern zurück
-     }
-     getSingle(isbnEingang: string): Book {
-        return this.books.find(book => book.isbn === isbnEingang);   // Gibt genau EIN Buch zurück
-     }
+
+  getSingle(isbnEingang: string): Observable<Book> {
+    return this.http.get<any>(`${this.api}/book/${isbnEingang}`);   // Gibt genau EIN Buch zurück
+  }
+
+  remove(isbnLoeschen: string): Observable<any> {
+    return this.http.delete(`${this.api}/book/${isbnLoeschen}`, { responseType: 'text'});
+  }
 }
