@@ -13,5 +13,6 @@ export class BookListItemComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
 }
 // Im DOM-Property "book" (aus book-list-component) liegt jetzt über PropertyBindings jeweils ein Buch-Objekt vor
