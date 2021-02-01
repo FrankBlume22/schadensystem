@@ -7,6 +7,7 @@ import { AbstractControl } from '@angular/forms';
   styleUrls: ['./form-messages.component.css']
 })
 export class FormMessagesComponent implements OnInit {
+
   @Input() control: AbstractControl;
   @Input() controlName: string;
 
@@ -16,33 +17,34 @@ export class FormMessagesComponent implements OnInit {
     },
     isbn: {
       required: 'Es muss eine ISBN angegeben werden.',
-      minlength: 'Die ISBN muss min. 10 Stellen haben',
-      maxlength: 'Die ISBN darf max. 13 Stellen haben'
+      minlength: 'Die ISBN muss mindestens 10 Zeichen haben.',
+      maxlength: 'Die ISBN darf höchstens 13 Zeichen haben.',
+      pattern: 'Es dürfen nur Zahlen eingegeben werden.'
     },
     published: {
-      required: 'Es muss ein Erscheinungsdatum geben.'
+      required: 'Es muss ein Erscheinungsdatum angegeben werden.'
     },
     authors: {
-      required: 'Es muss einen Autor geben.'
+      required: 'Es muss ein Autor angegeben werden.'
     }
   };
-
   constructor() { }
-
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
   errorsForControl(): string[] {
     const messages = this.allMessages[this.controlName];
+
     if (
       !this.control ||
       !this.control.errors ||
       !messages ||
       !this.control.dirty
-    ) { return null;}
+    ) { return null; }
 
     return Object.keys(this.control.errors)
-    .map(err => messages[err]);
+      .map(err => messages[err]);
   }
-
 }
+
+
