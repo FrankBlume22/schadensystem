@@ -12,17 +12,17 @@ export class BookFormComponent implements OnInit {
   book = BookFactory.empty();
 
   @Output() submitBook = new EventEmitter<Book>();
-  @ViewChild('bookForm') bookForm: NgForm;
+  // @ViewChild('bookForm') bookForm: NgForm;  Buchoriginal
+  @ViewChild('bookForm', { static: true }) bookForm: NgForm;
 
+  // tslint:disable-next-line: typedef
   submitForm(){
     this.submitBook.emit(this.book);
 
     this.book = BookFactory.empty();
     this.bookForm.reset();
+    console.log(this.bookForm);
   }
-  constructor() { }
-
   ngOnInit(): void {
   }
-
 }

@@ -14,7 +14,7 @@ export class BookFactory {
         { url: '', title: '' }
       ],
       description: '',
-    }
+    };
   }
 
   static fromRaw(b: BookRaw): Book{

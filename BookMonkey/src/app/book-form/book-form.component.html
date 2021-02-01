@@ -6,7 +6,12 @@
   <input
     name="title"
     [(ngModel)]="book.title"
-    required>
+    required
+    #titleInput="ngModel">
+    <bm-form-messages
+      [control]="titleInput"
+      controlName="title">
+    </bm-form-messages>
 
   <label>Untertitel</label>
   <input
@@ -15,26 +20,41 @@
     required>
 
   <label>ISBN</label>
+    <input
+      name="isbn"
+      [(ngModel)]="book.isbn"
+      required
+      minlength="10"
+      maxlength="13"
+      #isbnInput="ngModel">
+    <bm-form-messages
+      [control]="isbnInput"
+      controlName="isbn">
+    </bm-form-messages>
+
+  <label>Erscheinungsdatum</label>
   <input
-    name="isbn"
-    [(ngModel)]="book.isbn"
+    type="date"
+    name="published"
+    [(ngModel)]="book.published"
+    useValueAsDate
     required
-    minlength="10"
-    maxlength="13">
+    #dateInput="ngModel">
+  <bm-form-messages
+    [control]="dateInput"
+    controlName="published">
+  </bm-form-messages>
 
-   <label>Erscheinungsdatum</label>
-   <input
-   type="date"
-   name="published"
-   [(ngModel)]="book.published"
-   useValueAsDate
-   required>
-
-   <label>Autor</label>
-   <input
-   name="authors"
-   [(ngModel)]="book.authors[0]"
-   required>
+  <label>Autor</label>
+  <input
+    name="authors"
+    [(ngModel)]="book.authors[0]"
+    required
+    #authorInput="ngModel">
+  <bm-form-messages
+    [control]="authorInput"
+    controlName="authors">
+  </bm-form-messages>
 
    <label>Beschreibung</label>
    <textarea
@@ -62,3 +82,4 @@
   Speichern
   </button>
 </form>
+

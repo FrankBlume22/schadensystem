@@ -22,15 +22,24 @@ export class BookDetailsComponent implements OnInit {
   // tslint:disable-next-line: typedef
   ngOnInit() {
     const params = this.route.snapshot.paramMap;
+    this.isbnUebergabe = '';
     this.isbnUebergabe = params.get('isbn');
     this.bs.getSingle(this.isbnUebergabe).subscribe(b => this.book = b);
   }
+
+  /*// tslint:disable-next-line: typedef
+  ngOnInit() {
+    const params = this.route.snapshot.paramMap;
+    this.bs.getSingle(params.get('isbn'))
+      .subscribe(b => this.book = b);
+  }*/
 
   // tslint:disable-next-line: typedef
   getRating(num: number) {
     return new Array(num);
   }
 
+  // tslint:disable-next-line: typedef
   removeBook(){
     if (confirm('Buch wirklich löschen?')){
       this.bs.remove(this.book.isbn).subscribe( res => this.router.navigate(

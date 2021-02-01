@@ -10,7 +10,8 @@ import { retry, map, catchError } from 'rxjs/operators';                        
   providedIn: 'root'    // Sorgt für die automatische Registrierung im Root-Modul
 })
 export class BookStoreService {
-  private api = 'https://api3.angular-buch.com/secure';
+// private api = 'https://api3.angular-buch.com/secure';
+  private api = 'http://localhost:3000';
 
   constructor(private http: HttpClient){}
 
@@ -18,7 +19,7 @@ export class BookStoreService {
     return this.http.post(
       `${this.api}/book`,
       book,
-      { responseType: 'text'}
+      { responseType: 'text' }
     ).pipe(
       catchError(this.errorHandler)
     );
