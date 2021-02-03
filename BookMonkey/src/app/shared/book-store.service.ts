@@ -63,6 +63,16 @@ export class BookStoreService {
   remove(isbnLoeschen: string): Observable<any> {
     return this.http.delete(`${this.api}/book/${isbnLoeschen}`, { responseType: 'text'});
   }
+  // Neu mit Iteration 4b
+  update(book: Book): Observable<any>{
+    return this.http.put(
+      `${this.api}/book/${book.isbn}`,
+      book,
+      { responseType: 'text' }
+    ).pipe(
+      catchError(this.errorHandler)
+    );
+  }
 
   private errorHandler(error: HttpErrorResponse): Observable<any>{
     console.error('Fehleraufgetreten');
