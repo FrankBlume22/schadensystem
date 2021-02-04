@@ -11,7 +11,7 @@ import { BookStoreService } from '../shared/book-store.service';
 })
 export class BookDetailsComponent implements OnInit {
   book!: Book;
-  isbnUebergabe = ' ';
+  isbnUebergabe = '';
 
   constructor(
     private bs: BookStoreService,

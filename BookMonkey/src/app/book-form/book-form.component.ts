@@ -27,20 +27,6 @@ export class BookFormComponent implements OnInit, OnChanges {
     this.setFormValues(this.book);
   }
 
-  private setFormValues(book: Book) {
-    this.bookForm.patchValue(book);
-
-    this.bookForm.setControl(
-      'authors',
-      this.buildAuthorsArray(book.authors)
-    );
-
-    this.bookForm.setControl(
-      'thumbnails',
-      this.buildThumbnailsArray(book.thumbnails)
-    );
-  }
-
   private initForm() {
     if (this.bookForm) { return; }
 
@@ -59,6 +45,20 @@ export class BookFormComponent implements OnInit, OnChanges {
       ]),
       published: []
     });
+  }
+
+  private setFormValues(book: Book) {
+    this.bookForm.patchValue(book);
+
+    this.bookForm.setControl(
+      'authors',
+      this.buildAuthorsArray(book.authors)
+    );
+
+    this.bookForm.setControl(
+      'thumbnails',
+      this.buildThumbnailsArray(book.thumbnails)
+    );
   }
 
   private buildAuthorsArray(values: string[]): FormArray {

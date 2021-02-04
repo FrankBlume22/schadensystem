@@ -40,7 +40,7 @@ export const routes: Routes = [
   },
   {
     path: 'admin/edit/:isbn',      // Neu mit Iteration 4b
-    component: EditBookComponent   // Neu mit Iteration 4
+    component: EditBookComponent   // Neu mit Iteration 4b
   }
 ];
 
