@@ -10,8 +10,8 @@ import { retry, map, catchError } from 'rxjs/operators';                        
   providedIn: 'root'    // Sorgt für die automatische Registrierung im Root-Modul
 })
 export class BookStoreService {
-// private api = 'https://api3.angular-buch.com/secure';
-  private api = 'http://localhost:3000';
+ private api = 'https://api3.angular-buch.com/secure';
+//  private api = 'http://localhost:3000';
 
   constructor(private http: HttpClient){}
 
@@ -72,6 +72,15 @@ export class BookStoreService {
     ).pipe(
       catchError(this.errorHandler)
     );
+  }
+
+  // Neu für Validatoren
+  check(isbn: String): Observable<any> {
+    return this.http.get(
+      `${this.api}/book/${isbn}/check`
+    ).pipe(
+      catchError(this.errorHandler)
+    )
   }
 
   private errorHandler(error: HttpErrorResponse): Observable<any>{
