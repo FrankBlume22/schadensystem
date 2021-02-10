@@ -11,11 +11,13 @@
     </div>
     <div class="four wide column">
       <h4>ISBN</h4>
-        {{ book.isbn }}
+<!-- Änderung der folgenden Zeile mit Iteration 5 -->
+        {{ book.isbn | isbn }}
     </div>
     <div class="four wide column">
       <h4>Erschienen</h4>
-        {{ book.published }}
+<!-- Änderung der folgenden Zeile mit Iteration 5 -->
+{{ book.published | date:'longDate' }}
     </div>
     <div class="four wide column">
       <h4>Rating</h4>

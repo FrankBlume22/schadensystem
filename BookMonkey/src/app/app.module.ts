@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,12 +15,15 @@ import { BookFormComponent } from './book-form/book-form.component';
 import { CreateBookComponent } from './create-book/create-book.component';
 import { FormMessagesComponent } from './form-messages/form-messages.component';
 import { EditBookComponent } from './edit-book/edit-book.component';
+import { registerLocaleData } from '@angular/common';
+import localeDe from '@angular/common/locales/de';
+import { IsbnPipe } from './shared/isbn.pipe';
 
 @NgModule({
   declarations: [
     AppComponent, BookListComponent, BookListItemComponent,
     BookDetailsComponent, HomeComponent,
-    SearchComponent, BookFormComponent, CreateBookComponent, FormMessagesComponent, EditBookComponent
+    SearchComponent, BookFormComponent, CreateBookComponent, FormMessagesComponent, EditBookComponent, IsbnPipe
   ],
   imports: [
     BrowserModule, HttpClientModule,  // Neu mit Iteration 3
@@ -33,9 +36,14 @@ import { EditBookComponent } from './edit-book/edit-book.component';
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }
+    },
+    { provide: LOCALE_ID, useValue: 'de' } //  Neu mit Iteration 5
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+   constructor(){
+     registerLocaleData(localeDe);
+   }
+}
 

@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { Book } from '../shared/book';
 import { BookStoreService } from '../shared/book-store.service';  // Neu hinzu gekommen
+import { Observable, Observables } from 'rxjs'; // Neu mit Iteration 5
 
 @Component({
   selector: 'bm-book-list',
@@ -8,7 +9,8 @@ import { BookStoreService } from '../shared/book-store.service';  // Neu hinzu g
   styleUrls: ['./book-list.component.css']
 })
 export class BookListComponent implements OnInit {
-  books: Book[] = [];   // ACHTUNG : Abweichung von der Vorlage im Buch = books: Book[];
+  //books: Book[] = [];        // ALT: Bis Iteration 4b
+  books$: Observable<Book[]>;  // NEU: Ab Iteration 5
 
   constructor(private bs: BookStoreService){}
   // Wir nutzen den Zugriffsmodifier "private", und das Property "bs" wird
@@ -16,8 +18,7 @@ export class BookListComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   ngOnInit() {
-    this.bs.getAll().subscribe(res => this.books = res);
-    // Der Konstruktor hat bereits das Objekt "bs" des Service BookStoreService aufgebaut.
-    // Wir abonnieren das Observable der Büchertabelle
+   //this.bs.getAll().subscribe(res => this.books = res); // ALT: Bis Iteration 4b
+    this.books$ = this.bs.getAll(); // NEU: Ab Iteration 5 -> Async-Pipe
   }
 }

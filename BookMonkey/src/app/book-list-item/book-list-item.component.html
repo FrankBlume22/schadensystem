@@ -9,6 +9,7 @@
      {{ author }}<span *ngIf="!letzter">, </span>  <!-- Wurde der letzte Tabelleneintrag gelesen ist 'letzter' = wahr -->
    </span>                                         <!-- Solange letzter = unwahr, wird ein Komma ausgegeben -->
    <br>
-   ISBN {{ book.isbn }}  <!-- Der String "ISBN " wird geschrieben und der Inhalt des aktuellen DOM-Property wird angehängt -->
+<!-- Änderung der folgenden Zeile mit Iteration 5 -->
+   ISBN {{ book.isbn | isbn }}  <!-- Der String "ISBN " wird geschrieben und der Inhalt des aktuellen DOM-Property wird angehängt -->
  </div>
 </div>
