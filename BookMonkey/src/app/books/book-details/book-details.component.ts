@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Book } from '../shared/book';
-import { BookStoreService } from '../shared/book-store.service';
+import { Book } from '../../shared/book';
+import { BookStoreService } from '../../shared/book-store.service';
 
 @Component({
   selector: 'bm-book-details',
@@ -11,7 +11,7 @@ import { BookStoreService } from '../shared/book-store.service';
 })
 export class BookDetailsComponent implements OnInit {
   book!: Book;
-  isbnUebergabe = ' ';
+  isbnUebergabe = '';
 
   constructor(
     private bs: BookStoreService,

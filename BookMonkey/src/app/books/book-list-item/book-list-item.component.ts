@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Book } from '../shared/book'; // Import des Interfaces Book
+import { Book } from '../../shared/book'; // Import des Interfaces Book
 
 @Component({
   selector: 'bm-book-list-item',
