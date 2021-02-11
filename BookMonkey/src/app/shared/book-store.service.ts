@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Book } from './book';
 import { BookRaw } from './book-raw';                                 // Neu mit ITeration 3b
 import { BookFactory } from './book-factory';                         // Neu mit ITeration 3b
-import { HttpClient, HttpClientModule, HttpErrorResponse } from '@angular/common/http';  // Neu mit Iteration 3
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';  // Neu mit Iteration 3
 import { throwError, Observable } from 'rxjs';
 import { retry, map, catchError } from 'rxjs/operators';                                 // Neu mit ITeration 3b
 
@@ -80,7 +80,7 @@ export class BookStoreService {
       `${this.api}/book/${isbn}/check`
     ).pipe(
       catchError(this.errorHandler)
-    )
+    );
   }
 
   private errorHandler(error: HttpErrorResponse): Observable<any>{

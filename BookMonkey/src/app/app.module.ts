@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
+import { registerLocaleData } from '@angular/common';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -13,24 +14,25 @@ import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
-    AppComponent, HomeComponent, SearchComponent, BooksModule, AdminModule
+    AppComponent,
+    HomeComponent,
+    SearchComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule, AppRoutingModule
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    BooksModule,
+    AdminModule
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true
-    },
-    { provide: LOCALE_ID, useValue: 'de' } //  Neu mit Iteration 5
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    { provide: LOCALE_ID, useValue: 'de' }
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-   constructor(){
-     registerLocaleData(localeDe);
-   }
+  constructor() {
+    registerLocaleData(localeDe);
+  }
 }
-
