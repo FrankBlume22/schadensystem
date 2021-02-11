@@ -1,6 +1,6 @@
 <img class="ui tiny image"
 *ngIf="book.thumbnails && book.thumbnails[0] && book.thumbnails[0].url"
-[src]="book.thumbnails[0].url" [title]="book.thumbnails[0].title">      <!-- Die Bilddatei wird eingelesen -->
+[src]="book.thumbnails[0].url" [title]="book.thumbnails[0].title" bmZoom>      <!-- Die Bilddatei wird eingelesen -->
 <div class="content">                               <!-- Der Content wird geöffnet -->
  <div class="header">{{ book.title }}</div>        <!-- Der Buchtitel wird geschrieben -->
  <div *ngIf="book.subtitle" class="description">{{ book.subtitle }}</div>  <!-- Ist ein subtitle bekannt, wird er eingefügt -->

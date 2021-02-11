@@ -21,9 +21,13 @@
     </div>
     <div class="four wide column">
       <h4>Rating</h4>
-        <i class="yellow star icon"
-        *ngFor="let r of getRating(book.rating)"></i>
-    </div>
+<!-- Änderung der folgenden Zeile mit Iteration 5 -->
+    <ng-container
+      *ngFor="let r of getRating(book.rating);
+              index as i">
+      <i class="yellow star icon"
+        *bmDelay="500 + i * 2200"></i>
+    </ng-container>    </div>
   </div>
   <h4>Beschreibung</h4>
   <p> {{ book.description }} </p>
