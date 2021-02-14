@@ -16,11 +16,11 @@ const routes: Routes = [
   },
   {
     path: 'books',   // Lazy Loading
-    loadChildren: './books/books.module#BooksModule'
+    loadChildren: () => import('./books/books.module').then(m => m.BooksModule)
   },
   {
     path: 'admin',   // Lazy Loading
-    loadChildren: './admin/admin.module#AdminModule',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
     canActivate: [CanNavigateToAdminGuard]  // Setzt den Guard auf den "admin"-Pfad
   }
 ];
