@@ -19,10 +19,9 @@ export class BookDetailsComponent implements OnInit {
     private router: Router          // Neu mit Iteration 3
   ) { }
 
-  // tslint:disable-next-line: typedef
   ngOnInit() {
     const params = this.route.snapshot.paramMap;
-    this.isbnUebergabe = '';
+    this.isbnUebergabe = ' ';
     this.isbnUebergabe = params.get('isbn');
     this.bs.getSingle(this.isbnUebergabe).subscribe(b => this.book = b);
   }
