@@ -1,16 +1,5 @@
-<h1>Schadensystem 1.0.1. mit JSONServer Daten</h1>
-
-<div class="ui middle aligned selection divided list">    <!-- Element des Styleframeworks Semantic UI -->
-  <a *ngFor="let einzelSchaden of schaden" class="item">  <!-- ngFor wiederholt das Element <a class="item"> für jeden Schaden -->
-    <div class="content">                                 <!-- Der Content wird geöffnet -->
-      <div class="header">SDNR: {{ einzelSchaden.sdnr }}</div>  <!-- Die SDNR wird geschrieben -->
-      <div class="metadata">
-                Schaden-Typ: {{ einzelSchaden.sdTyp }}
-                Schaden-Ursache: {{ einzelSchaden.sdUrsache }}
-                Sparte: {{ einzelSchaden.sparte }}
-      </div>
-      <BR>
-    </div>
-  </a>
+<div class="ui menu">
+  <a routerLink="home" routerLinkActive="active" class="item">Home</a>
+  <a routerLink="schaden" routerLinkActive="active" class="item">Schäden</a>
 </div>
 <router-outlet></router-outlet>

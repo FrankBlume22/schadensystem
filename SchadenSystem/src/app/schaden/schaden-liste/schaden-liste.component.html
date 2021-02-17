@@ -1,0 +1,14 @@
+<h1>Schadensystem 1.0.1. mit JSONServer Daten</h1>
+
+<div class="ui middle aligned selection divided list">
+
+  <ng-container *ngIf="schaeden">
+    <sd-schaden-liste-item class="item"
+      *ngFor="let einzelSchaden of schaeden"
+      [schaden]="einzelSchaden"
+      [routerLink]="einzelSchaden.sdnr"></sd-schaden-liste-item>
+
+    <p *ngIf="!schaeden.length">Es wurden noch keine Bücher eingetragen.</p>
+  </ng-container>
+
+</div>
