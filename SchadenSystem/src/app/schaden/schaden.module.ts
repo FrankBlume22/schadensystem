@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { SchadenRoutingModule } from './schaden-routing.module';
 import { SchadenListeComponent } from './schaden-liste/schaden-liste.component';
 import { SchadenListeItemComponent } from './schaden-liste-item/schaden-liste-item.component';
+import { SchadenDetailsComponent } from './schaden-details/schaden-details.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { SchadenListeItemComponent } from './schaden-liste-item/schaden-liste-it
   ],
   declarations: [
     SchadenListeComponent,
-    SchadenListeItemComponent
+    SchadenListeItemComponent,
+    SchadenDetailsComponent
   ]
 })
 export class SchadenModule { }

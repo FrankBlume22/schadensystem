@@ -1,4 +1,4 @@
-export interface Schaden {
+export interface SchadenRohdaten {
   sdnr: string;
   sdTyp: string;
   sdUrsache: string;

@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { SchadenListeComponent } from './schaden-liste/schaden-liste.component';
+import { SchadenDetailsComponent } from './schaden-details/schaden-details.component';
 
 const routes: Routes = [
   {
@@ -9,7 +11,11 @@ const routes: Routes = [
   },
   {
     path: ':sdnr',
-    component: SchadenListeComponent
+    component: SchadenDetailsComponent
+  },
+  {
+    path: '/edit/:sdnr',
+    component: SchadenDetailsComponent
   }
 ];
 

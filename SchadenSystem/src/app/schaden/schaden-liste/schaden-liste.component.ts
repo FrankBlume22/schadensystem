@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Schaden } from 'src/app/shared/schaden';
 import { SchadenStoreService } from 'src/app/shared/schaden-store.service';
 
@@ -9,6 +9,7 @@ import { SchadenStoreService } from 'src/app/shared/schaden-store.service';
 })
 export class SchadenListeComponent implements OnInit {
 
+  @Output()
   schaeden: Schaden[] = [];
 
   constructor(private ss: SchadenStoreService){}

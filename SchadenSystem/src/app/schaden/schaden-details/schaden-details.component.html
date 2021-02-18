@@ -1,0 +1,36 @@
+<div *ngIf="schaden">
+  <h3 *ngIf="schaden.sdnr"> {{ schaden.sdnr }} </h3>
+  <div class="ui divider"></div>
+  <div class="ui grid">
+    <div class="four wide column">
+      <h4>Schadennummer</h4>
+      {{ schaden.sdnr }}
+      <Br>
+    </div>
+    <div class="four wide column">
+      <h4>Schaden-Typ</h4>
+        {{ schaden.sdTyp }} <br>
+    </div>
+    <div class="four wide column">
+      <h4>Schaden-Ursache</h4>
+        {{ schaden.sdUrsache }}
+    </div>
+    <div class="four wide column">
+      <h4>Sparte</h4>
+        {{ schaden.sparte }}
+    </div>
+
+    <div *ngIf="schaden; else loading">
+    <button class="ui tiny red labeled icon button" (click)="removeBook()">
+      <i class="remove icon"></i> Schaden löschen
+    </button>
+    <a class="ui tiny yellow labeled icon button"
+    [routerLink]="['../../schaden/edit', schaden.sdnr]">
+    <i class="write icon"></i> Schaden bearbeiten
+  </a>
+  </div>
+
+  <ng-template #loading>
+    <div class="ui actice centered inline loader"></div>
+  </ng-template>
+</div>

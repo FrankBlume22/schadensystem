@@ -11,7 +11,7 @@ import localeDe from '@angular/common/locales/de';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
