@@ -1,33 +1,42 @@
-<div *ngIf="schaden">
-  <h3 *ngIf="schaden.sdnr"> {{ schaden.sdnr }} </h3>
+<div *ngIf="schadenKlasse">
   <div class="ui divider"></div>
   <div class="ui grid">
     <div class="four wide column">
       <h4>Schadennummer</h4>
-      {{ schaden.sdnr }}
+      <span *ngFor="let eintrag of schadenKlasse">
+        {{eintrag.sdnr}}
+      </span>
       <Br>
     </div>
     <div class="four wide column">
       <h4>Schaden-Typ</h4>
-        {{ schaden.sdTyp }} <br>
+      <span *ngFor="let eintrag of schadenKlasse">
+        {{eintrag.sdTyp}}
+      </span>
+      <Br>
     </div>
     <div class="four wide column">
       <h4>Schaden-Ursache</h4>
-        {{ schaden.sdUrsache }}
+      <span *ngFor="let eintrag of schadenKlasse">
+        {{eintrag.sdUrsache}}
+      </span>
+      <Br>
     </div>
     <div class="four wide column">
       <h4>Sparte</h4>
-        {{ schaden.sparte }}
+      <span *ngFor="let eintrag of schadenKlasse">
+        {{eintrag.sparte}}
+      </span>
     </div>
 
-    <div *ngIf="schaden; else loading">
+    <div *ngIf="schadenKlasse; else loading">
     <button class="ui tiny red labeled icon button" (click)="removeBook()">
       <i class="remove icon"></i> Schaden löschen
     </button>
     <a class="ui tiny yellow labeled icon button"
-    [routerLink]="['../../schaden/edit', schaden.sdnr]">
+    [routerLink]="['../../schaden/edit', schadenKlasse.sdnr]">
     <i class="write icon"></i> Schaden bearbeiten
-  </a>
+    </a>
   </div>
 
   <ng-template #loading>

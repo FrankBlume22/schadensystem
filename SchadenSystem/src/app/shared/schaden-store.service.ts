@@ -5,6 +5,7 @@ import { SchadenFactory } from './schaden-factory';
 import { HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
 import { throwError,Observable } from 'rxjs';
 import { retry, map, catchError } from 'rxjs/operators';
+import { SchadenKlasse } from './schaden.klasse';
 
 @Injectable({
   providedIn: 'root'
@@ -24,11 +25,11 @@ export class SchadenStoreService {
 
 // Wir erzeugen zuerst den (Suchparameter), den wir an die API senden.
 // Dann bauen wir die URL zusammen und hängen den Suchparameter an.
-  getSingle(sdnrEingang: string): Observable<Schaden>{
+// Wir empfangen ROH-Daten und trasnformieren in das Schaden-Interface
+  getSingleInterface(sdnrEingang: string): Observable<Schaden>{
     let sdnrParameter = new HttpParams().set('sdnr', sdnrEingang);
-    console.log(sdnrParameter);
     return this.schadenHttp.get<SchadenRohdaten>(
-      `${this.schadenAPI}/schaden`, {params:sdnrParameter}
+      `${this.schadenAPI}/schaden`, {params: sdnrParameter}
       ).pipe(
         retry(3),
         map(sd => SchadenFactory.vonDenRohdaten(sd)),
@@ -36,7 +37,26 @@ export class SchadenStoreService {
       );
  }
 
-  private errorHandler(error: HttpErrorResponse): Observable<any>{
+ // Wir erzeugen zuerst den (Suchparameter), den wir an die API senden.
+// Dann bauen wir die URL zusammen und hängen den Suchparameter an.
+// Wir empfangen ROH-Daten und trasnformieren in das Schaden-Interface
+getSingleKlasse(sdnrEingang: string): Observable<SchadenKlasse>{
+  let sdnrParameter = new HttpParams().set('sdnr', sdnrEingang);
+  return this.schadenHttp.get<SchadenRohdaten>(
+    `${this.schadenAPI}/schaden`, {params: sdnrParameter}
+    ).pipe(
+      retry(3),
+      map(sd => SchadenFactory.vonDenRohdaten(sd)),
+      catchError(this.errorHandler)
+    );
+}
+
+getSingleURL(): string{
+  const urlString = `${this.schadenAPI}/schaden`;
+  return urlString;
+}
+
+private errorHandler(error: HttpErrorResponse): Observable<any>{
     console.error('Fehler aufgetreten im SchadenStoreService');
     return throwError(error);
   }
