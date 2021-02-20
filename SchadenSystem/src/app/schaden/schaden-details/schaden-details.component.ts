@@ -70,4 +70,15 @@ export class SchadenDetailsComponent implements OnInit {
        }
      );
   }
+  removeSchaden(){
+    if (confirm('Schaden wirklich löschen?')){
+      const params = this.route.snapshot.paramMap;
+      const sdnrLoeschen = params.get('sdnr');
+      this.ss.remove(sdnrLoeschen).subscribe( res => this.router.navigate(
+        ['../'],
+        { relativeTo: this.route}
+        )
+      );
+    }
+  }
 }

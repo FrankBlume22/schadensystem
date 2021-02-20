@@ -51,11 +51,19 @@ getSingleKlasse(sdnrEingang: string): Observable<SchadenKlasse>{
     );
 }
 
+// URL der Schaden-Objekte
 getSingleURL(): string{
   const urlString = `${this.schadenAPI}/schaden`;
   return urlString;
 }
 
+remove(sdnrLoeschen: string): Observable<any> {
+  const sdnrParameter = new HttpParams().set('sdnr', sdnrLoeschen);
+
+  return this.schadenHttp.delete(
+    this.getSingleURL(), {params: sdnrParameter}
+    );
+}
 private errorHandler(error: HttpErrorResponse): Observable<any>{
     console.error('Fehler aufgetreten im SchadenStoreService');
     return throwError(error);
