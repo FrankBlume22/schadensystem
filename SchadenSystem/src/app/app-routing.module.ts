@@ -16,6 +16,10 @@ const routes: Routes = [
     path: 'schaden',   // Lazy Loading
     loadChildren: () => import('./schaden/schaden.module').then(m => m.SchadenModule)
   },
+  {
+    path: 'gev',   // Lazy Loading
+    loadChildren: () => import('./gev/gev.module').then(m => m.GevModule)
+  }
 ];
 
 @NgModule({

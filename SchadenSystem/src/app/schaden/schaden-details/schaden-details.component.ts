@@ -67,6 +67,7 @@ export class SchadenDetailsComponent implements OnInit {
           response => {
           console.log(response);
           this.schadenKlasse = response;
+          console.log(this.schadenKlasse);
        }
      );
   }

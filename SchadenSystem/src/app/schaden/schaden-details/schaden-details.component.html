@@ -1,6 +1,14 @@
-<div *ngIf="schadenKlasse">
+
+<div *ngIf="schadenKlasse" >
   <div class="ui divider"></div>
   <div class="ui grid">
+    <div class="four wide column">
+      <h4>GES-KZ</h4>
+      <span *ngFor="let eintrag of schadenKlasse">
+        {{eintrag.geskz}}
+      </span>
+      <Br>
+    </div>
     <div class="four wide column">
       <h4>Schadennummer</h4>
       <span *ngFor="let eintrag of schadenKlasse">

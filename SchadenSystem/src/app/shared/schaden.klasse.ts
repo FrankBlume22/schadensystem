@@ -1,5 +1,6 @@
 export class SchadenKlasse {
   constructor(
+  public geskz: string,
   public sdnr: string,
   public sdTyp: string,
   public sdUrsache: string,

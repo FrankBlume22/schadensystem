@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Schaden } from './schaden';
 import { SchadenRohdaten } from './schaden-rohdaten';
 import { SchadenFactory } from './schaden-factory';
-import { HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from '@angular/common/http';
 import { throwError,Observable } from 'rxjs';
 import { retry, map, catchError } from 'rxjs/operators';
 import { SchadenKlasse } from './schaden.klasse';
@@ -37,7 +37,7 @@ export class SchadenStoreService {
       );
  }
 
- // Wir erzeugen zuerst den (Suchparameter), den wir an die API senden.
+// Wir erzeugen zuerst den (Suchparameter), den wir an die API senden.
 // Dann bauen wir die URL zusammen und hängen den Suchparameter an.
 // Wir empfangen ROH-Daten und trasnformieren in das Schaden-Interface
 getSingleKlasse(sdnrEingang: string): Observable<SchadenKlasse>{
@@ -51,18 +51,42 @@ getSingleKlasse(sdnrEingang: string): Observable<SchadenKlasse>{
     );
 }
 
+// Wir erzeugen zuerst den (Suchparameter), den wir an die API senden.
+// Dann bauen wir die URL zusammen und hängen den Suchparameter an.
+// Wir empfangen ROH-Daten und trasnformieren in das Schaden-Interface
+getAllGEV(gesKzEingang: string): Observable<SchadenKlasse[]> {
+  console.log(gesKzEingang) ;
+  const gesKzParameter = new HttpParams().set('geskz', gesKzEingang);
+  return this.schadenHttp.get<SchadenRohdaten[]>(
+    `${this.schadenAPI}/schaden`, {params: gesKzParameter}
+    ).pipe(
+      retry(3),
+      map(vonDenRohdaten =>
+      vonDenRohdaten.map(sd => SchadenFactory.vonDenRohdaten(sd)),
+      catchError(this.errorHandler)
+       )
+    );
+}
+
 // URL der Schaden-Objekte
 getSingleURL(): string{
   const urlString = `${this.schadenAPI}/schaden`;
   return urlString;
 }
 
-remove(sdnrLoeschen: string): Observable<any> {
-  const sdnrParameter = new HttpParams().set('sdnr', sdnrLoeschen);
+/*remove(sdnrLoeschen: string): Observable<any> {
+//  const url = `${this.schadenAPI}/schaden/${sdnrLoeschen}`;
+  // const url = `${this.schadenAPI}/schaden/sdnr/${sdnrLoeschen}`;
+  return this.schadenHttp.delete(`${this.schadenAPI}/schaden/sdnr/${sdnrLoeschen}`, { responseType: 'text'});
+  // return this.schadenHttp.delete(url, {
+   // headers: new HttpHeaders({ 'Content-Type': 'application/json' })//
+}*/
 
-  return this.schadenHttp.delete(
-    this.getSingleURL(), {params: sdnrParameter}
-    );
+remove(sdnrLoeschen: string): Observable<any> {
+  const url = `${this.schadenAPI}/schaden?sdnr=${sdnrLoeschen}`;
+//  return this.schadenHttp.delete(url , { responseType: 'text'});
+  return this.schadenHttp.delete(url , { responseType: 'text'});
+
 }
 private errorHandler(error: HttpErrorResponse): Observable<any>{
     console.error('Fehler aufgetreten im SchadenStoreService');
