@@ -32,6 +32,7 @@ umgebungTab: string[] = [];
   ngOnInit() {
     this.gesKz = this.gesKzSetzen();
     this.ss.getAllGEV(this.gesKz).subscribe(res => this.schaeden = res);
+    console.log(this.schaeden.length);
   }
   gesKzSetzen() {
     let kz = '';

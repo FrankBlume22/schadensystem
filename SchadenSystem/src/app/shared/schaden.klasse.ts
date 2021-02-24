@@ -4,6 +4,7 @@ export class SchadenKlasse {
   public sdnr: string,
   public sdTyp: string,
   public sdUrsache: string,
-  public sparte: string
+  public sparte: string,
+  public vnr: string
   ){}
 }

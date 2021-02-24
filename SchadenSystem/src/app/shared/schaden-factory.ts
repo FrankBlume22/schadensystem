@@ -10,6 +10,7 @@ export class SchadenFactory {
       sdTyp: '',
       sdUrsache: '',
       sparte: '',
+      vnr: ''
     };
   }
 

@@ -1,0 +1,37 @@
+<table>
+  <tr>
+    <td><h1>Schadensystem der GENERALI</h1></td>
+    <td><img src="./../../../assets/imgages/gev_logo.jpg"></td>
+  </tr>
+</table>
+
+<form class="ui form"
+  [formGroup]="sucheForm">
+
+  <label>SDNR</label>
+  <input formControlName="sdnr" type="text"
+         (keyup)="taste($event)"
+         [readOnly]="sdnrGesperrt"
+         >
+  <sd-fehlermeldungen
+  [control]="sucheForm.get('sdnr')"
+  controlName="sdnr">
+  </sd-fehlermeldungen>
+
+  <label>VNR</label>
+  <input formControlName="vnr" type="text"
+         (keyup)="taste($event)"
+         [readOnly]="vnrGesperrt"
+         >
+  <sd-fehlermeldungen
+  [control]="sucheForm.get('vnr')"
+  controlName="vnr">
+  </sd-fehlermeldungen>
+
+  <p>
+    <button class="ui button" type="submit"
+     [disabled]="sucheForm.invalid"
+     (click)="suchenObgr()">Suchen</button>
+  </p>
+</form>
+

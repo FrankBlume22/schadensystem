@@ -36,6 +36,12 @@
         {{eintrag.sparte}}
       </span>
     </div>
+    <div class="four wide column">
+      <h4>VNR</h4>
+      <span *ngFor="let eintrag of schadenKlasse">
+        {{eintrag.vnr}}
+      </span>
+    </div>
 
     <div *ngIf="schadenKlasse; else loading">
     <button class="ui tiny red labeled icon button" (click)="removeSchaden()">

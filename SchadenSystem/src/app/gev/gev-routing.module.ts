@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SchadenDetailsComponent } from '../schaden/schaden-details/schaden-details.component';
-import { SucheStartComponent } from '../shared/suche-start/suche-start.component';
+import { SucheStartComponent } from './suche-start/suche-start.component';
 
 const routes: Routes = [
   {

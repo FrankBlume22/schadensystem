@@ -4,4 +4,5 @@ export interface Schaden {
   sdTyp: string;
   sdUrsache: string;
   sparte: string;
+  vnr: string;
 }

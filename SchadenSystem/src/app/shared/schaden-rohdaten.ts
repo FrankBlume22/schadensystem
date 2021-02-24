@@ -4,4 +4,5 @@ export interface SchadenRohdaten {
   sdTyp: string;
   sdUrsache: string;
   sparte: string;
+  vnr: string;
 }

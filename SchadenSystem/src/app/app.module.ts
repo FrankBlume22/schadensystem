@@ -7,14 +7,12 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
-import { SucheStartComponent } from './shared/suche-start/suche-start.component';
 import { DataStore } from './shared/data-store';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    SucheStartComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

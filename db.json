@@ -5,24 +5,21 @@
       "sdnr": "100000121",
       "sdTyp": "TK",
       "sdUrsache": "741",
-      "sparte": "KS",
-      "vnr": "12345678901111"
+      "sparte": "KS"
     },
     {
       "geskz": "00",
       "sdnr": "100000221",
       "sdTyp": "VK",
       "sdUrsache": "130",
-      "sparte": "KS",
-      "vnr": "12345678902222"
+      "sparte": "KS"
     },
     {
       "geskz": "79",
       "sdnr": "100000321",
       "sdTyp": "AH",
       "sdUrsache": "21",
-      "sparte": "HS",
-      "vnr": "12345678902222"
+      "sparte": "HS"
     }
   ],
   "Zustaendig": [
