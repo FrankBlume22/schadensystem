@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Schaden } from './schaden';
 import { SchadenRohdaten } from './schaden-rohdaten';
 import { SchadenFactory } from './schaden-factory';
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
 import { throwError,Observable } from 'rxjs';
 import { retry, map, catchError } from 'rxjs/operators';
 import { SchadenKlasse } from './schaden.klasse';
@@ -41,7 +41,7 @@ export class SchadenStoreService {
 // Dann bauen wir die URL zusammen und hängen den Suchparameter an.
 // Wir empfangen ROH-Daten und trasnformieren in das Schaden-Interface
 getSingleKlasse(sdnrEingang: string): Observable<SchadenKlasse>{
-  let sdnrParameter = new HttpParams().set('sdnr', sdnrEingang);
+  const sdnrParameter = new HttpParams().set('sdnr', sdnrEingang);
   return this.schadenHttp.get<SchadenRohdaten>(
     `${this.schadenAPI}/schaden`, {params: sdnrParameter}
     ).pipe(
@@ -54,6 +54,22 @@ getSingleKlasse(sdnrEingang: string): Observable<SchadenKlasse>{
 // Wir erzeugen zuerst den (Suchparameter), den wir an die API senden.
 // Dann bauen wir die URL zusammen und hängen den Suchparameter an.
 // Wir empfangen ROH-Daten und trasnformieren in das Schaden-Interface
+getSingleObservable(sdnrEingang: string): Observable<SchadenKlasse[]>{
+  const sdnrParameter = new HttpParams().set('sdnr', sdnrEingang);
+  return this.schadenHttp.get<SchadenRohdaten[]>(
+    `${this.schadenAPI}/schaden`, {params: sdnrParameter}
+    ).pipe(
+      retry(3),
+      map(vonDenRohdaten =>
+        vonDenRohdaten.map(sd => SchadenFactory.vonDenRohdaten(sd)),
+        catchError(this.errorHandler)
+      )
+    );
+}
+
+// Wir erzeugen zuerst den (Suchparameter), den wir an die API senden.
+// Dann bauen wir die URL zusammen und hängen den Suchparameter an.
+// Wir empfangen ROH-Daten und transformieren in das Schaden-Interface
 getAllGEV(gesKzEingang: string): Observable<SchadenKlasse[]> {
   console.log(gesKzEingang) ;
   const gesKzParameter = new HttpParams().set('geskz', gesKzEingang);

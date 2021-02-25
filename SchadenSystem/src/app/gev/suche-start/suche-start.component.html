@@ -1,9 +1,4 @@
-<table>
-  <tr>
-    <td><h1>Schadensystem der GENERALI</h1></td>
-    <td><img src="./../../../assets/imgages/gev_logo.jpg"></td>
-  </tr>
-</table>
+<sd-schaden-kopf></sd-schaden-kopf>
 
 <form class="ui form"
   [formGroup]="sucheForm">
@@ -12,6 +7,7 @@
   <input formControlName="sdnr" type="text"
          (keyup)="taste($event)"
          [readOnly]="sdnrGesperrt"
+         placeholder="Geben Sie bitte eine SDNR ein ..."
          >
   <sd-fehlermeldungen
   [control]="sucheForm.get('sdnr')"
@@ -22,6 +18,7 @@
   <input formControlName="vnr" type="text"
          (keyup)="taste($event)"
          [readOnly]="vnrGesperrt"
+         placeholder="Geben Sie bitte eine VNR ein ..."
          >
   <sd-fehlermeldungen
   [control]="sucheForm.get('vnr')"
@@ -34,4 +31,26 @@
      (click)="suchenObgr()">Suchen</button>
   </p>
 </form>
+
+<div class="ui middle aligned selection divided list">
+    <ng-container *ngIf="schaden$ | async as schaeden">
+      <ng-container sdnr = schaeden[0].sdnr></ng-container>
+
+        <a [routerLink]="['/gev',sdnr]" routerLinkActive="active">
+          <sd-schaden-liste-item class="item"
+          *ngFor="let s of schaeden"
+          [schaden]="s"></sd-schaden-liste-item>
+        </a>
+
+    </ng-container>
+
+    <ng-template #loading>
+      <div class="ui active dimmer">
+        <div class="ui large text loader">Daten werden geladen...</div>
+      </div>
+    </ng-template>
+</div>
+<ng-container *ngIf="schaden$ | async as schaeden">
+  <h1>Bitte wählen Sie Ihren Schaden</h1>
+</ng-container>
 

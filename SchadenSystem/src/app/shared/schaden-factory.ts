@@ -1,4 +1,4 @@
-import { SchadenDetailsComponent } from "../schaden/schaden-details/schaden-details.component";
+import { SchadenDetailsComponent } from "../gev/schaden-details/schaden-details.component";
 import { Schaden } from "./schaden";
 import { SchadenRohdaten } from "./schaden-rohdaten";
 

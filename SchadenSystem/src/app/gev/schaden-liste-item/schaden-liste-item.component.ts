@@ -12,6 +12,7 @@ export class SchadenListeItemComponent implements OnInit {
   schaden!: Schaden;
 
   ngOnInit(): void {
+    console.log('In der Item-Klasse: ' + this.schaden)
   }
 
 }

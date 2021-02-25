@@ -4,6 +4,11 @@ import { GevRoutingModule } from './gev-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SucheStartComponent } from './suche-start/suche-start.component';
 import { FehlermeldungenComponent } from './fehlermeldungen/fehlermeldungen.component';
+import { SchadenListeItemComponent } from './schaden-liste-item/schaden-liste-item.component';
+import { SchadenListeComponent } from './schaden-liste/schaden-liste.component';
+import { SchadenDetailsComponent } from './schaden-details/schaden-details.component';
+import { SchadenKopfComponent } from './schaden-kopf/schaden-kopf.component';
+import { EditSchadenComponent } from './edit-schaden/edit-schaden.component';
 
 
 @NgModule({
@@ -14,7 +19,13 @@ import { FehlermeldungenComponent } from './fehlermeldungen/fehlermeldungen.comp
   ],
   declarations: [
     SucheStartComponent,
-    FehlermeldungenComponent
+    SchadenListeItemComponent,
+    SchadenListeComponent,
+    SchadenDetailsComponent,
+    SchadenKopfComponent,
+    FehlermeldungenComponent,
+    SchadenKopfComponent,
+    EditSchadenComponent
   ]
 })
 export class GevModule { }

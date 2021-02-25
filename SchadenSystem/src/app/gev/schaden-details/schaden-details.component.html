@@ -1,0 +1,64 @@
+<sd-schaden-kopf></sd-schaden-kopf>
+<BR>
+  <div class="content">
+    <h2>Was möchten Sie als nächstes tun?</h2>
+  </div>
+<BR>
+<ng-container *ngIf="schaeden$ | async as schaden">
+      <table>
+        <tr>
+          <TD width=100>
+            <h4>GES-KZ</h4>
+          </TD>
+          <TD width=150>
+            <h4>Schadennummer</h4>
+          </TD>
+          <TD width=100>
+            <h4>SD-Typ</h4>
+          </TD>
+          <TD width=100>
+            <h4>SD-Ursache</h4>
+          </TD>
+          <TD width=100>
+            <h4>Sparte</h4>
+          </TD>
+          <TD width=100>
+            <h4>VNR</h4>
+          </TD>
+        </tr>
+        <tr>
+          <TD width=100>
+            {{ schaden[0].geskz }}
+          </TD>
+          <TD width=150>
+            {{ schaden[0].sdnr }}
+          </TD>
+          <TD width=100>
+            {{ schaden[0].sdTyp}}
+          </TD>
+          <TD width=100>
+            {{ schaden[0].sdUrsache }}
+          </TD>
+          <TD width=100>
+            {{ schaden[0].sparte }}
+          </TD>
+          <TD width=100>
+            {{ schaden[0].vnr }}
+          </TD>
+        </tr>
+      </table>
+    </ng-container>
+    <BR>
+    <div *ngIf="schaeden$ | async as schaden; else loading">
+      <button class="ui tiny red labeled icon button" (click)="removeSchaden()">
+        <i class="remove icon"></i> Schaden löschen
+      </button>
+      <a class="ui tiny green labeled icon button"
+        [routerLink]="['../../gev/edit', schaden[0].sdnr]">
+        <i class="write icon"></i> Schaden bearbeiten
+      </a>
+    </div>
+  <ng-template #loading>
+    <div class="ui actice centered inline loader"></div>
+  </ng-template>
+

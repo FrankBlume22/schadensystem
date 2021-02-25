@@ -1,9 +1,11 @@
-import { ThrowStmt } from '@angular/compiler';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnChanges, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup} from '@angular/forms';
 import { Router } from '@angular/router';
-import { Suche } from 'src/app/schaden/suche';
-import { DataStore } from '../../shared/data-store';
+import { Observable } from 'rxjs';
+import { Suche } from 'src/app/gev/suche';
+import { SchadenStoreService } from 'src/app/shared/schaden-store.service';
+import { SchadenKlasse } from 'src/app/shared/schaden.klasse';
 import { EingabeObgrValidator } from '../eingabe-obgr-validator';
 
 @Component({
@@ -15,20 +17,28 @@ export class SucheStartComponent implements OnInit, OnChanges {
   sucheForm: FormGroup;
   suche: Suche;
 
-  sdnrEingabe = false;
+  // Den Schaden lesen wir asynchron ein
+  schaden$: Observable<SchadenKlasse[]>;
+
+  sdnr: string;
+  vnr: string;
+
   sdnrGesperrt = false;
-  vnrEingabe = false;
   vnrGesperrt = false;
 
   titel: string;
   url: string;
   href = '';
   umgebung: string;
+  sdnrVorhanden: boolean;
 
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private dataStorage: DataStore
+    private ss: SchadenStoreService
+
+    // private sdnrExistsValidator: SdnrExistValidatorService,
+    // private dataStorage: DataStore
   ) { }
 
   ngOnInit(): void {
@@ -67,18 +77,14 @@ export class SucheStartComponent implements OnInit, OnChanges {
       this.sdnrGesperrt = false;
       console.log('sdnr geoffnet');
     }
-    /*console.log(formValue.sdnr);
-    console.log(formValue.vnr);
-    console.log(sdnr.length);
-    console.log(vnr.length);*/
   }
   // tslint:disable-next-line: typedef
   initForm(){
      if (this.sucheForm){return; }
   /*     Einzeln ohne FormBuilder
          this.sucheForm = new FormGroup({
-         sdnr: new FormControl(' '),
-         vnr: new FormControl(' ')
+         sdnr: new FormControl(''),
+         vnr: new FormControl('')
       });  */
      this.initFormBuilder();
   }
@@ -87,9 +93,10 @@ export class SucheStartComponent implements OnInit, OnChanges {
     console.log('Init-Durchlauf');
     this.sucheForm = this.fb.group({
        sdnr: [{ value: '', disabled: this.sdnrGesperrt }, [
+         EingabeObgrValidator.sdnrNum,
          EingabeObgrValidator.sdnrFormat
          ],
-         //
+         // this.sdnrVorhanden ? null : [this.sdnrExistsValidator]
        ],
        vnr: [{ value: '', disabled: this.vnrGesperrt }, [
          EingabeObgrValidator.vnrFormat
@@ -112,15 +119,22 @@ export class SucheStartComponent implements OnInit, OnChanges {
 
     this.sucheForm.reset();
     this.initFormBuilder();
+
+    this.sdnr = formValue.sdnr;
+    this.vnr  = formValue.vnr;
+
+    if (this.sdnr.length === 9)
+    {this.schadenHolen(); }
+    else
+    {this.vnrHolen(); }
   }
   // tslint:disable-next-line: typedef
   schadenHolen()
   {
-    this.dataStorage.data = {
+    /*this.dataStorage.data = {
       umgebung: this.umgebung
-    };
-    this.router.navigate(['../schaden']);
-    console.log('SDNR Button');
+    };*/
+    this.schaden$ = this.ss.getSingleObservable(this.sdnr);
   }
   // tslint:disable-next-line: typedef
   vnrHolen()

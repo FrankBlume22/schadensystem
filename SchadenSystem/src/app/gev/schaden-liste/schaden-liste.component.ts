@@ -28,12 +28,15 @@ umgebungTab: string[] = [];
       // Ausgabe ist z.B.: {"umgebung":"generali"}
       console.log(this.umgebung);
       }
+
   // tslint:disable-next-line: typedef
   ngOnInit() {
     this.gesKz = this.gesKzSetzen();
     this.ss.getAllGEV(this.gesKz).subscribe(res => this.schaeden = res);
     console.log(this.schaeden.length);
   }
+
+  // tslint:disable-next-line: typedef
   gesKzSetzen() {
     let kz = '';
     // Erzeugt: ["{", "umgebung", ":", "generali"]
