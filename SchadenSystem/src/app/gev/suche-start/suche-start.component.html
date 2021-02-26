@@ -3,7 +3,7 @@
 <form class="ui form"
   [formGroup]="sucheForm">
 
-  <label>SDNR</label>
+  <label><h2>SDNR</h2></label>
   <input formControlName="sdnr" type="text"
          (keyup)="taste($event)"
          [readOnly]="sdnrGesperrt"
@@ -14,7 +14,7 @@
   controlName="sdnr">
   </sd-fehlermeldungen>
 
-  <label>VNR</label>
+  <label><h2>VNR</h2></label>
   <input formControlName="vnr" type="text"
          (keyup)="taste($event)"
          [readOnly]="vnrGesperrt"

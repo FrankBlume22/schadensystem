@@ -25,7 +25,7 @@ export class SchadenStoreService {
 
 // Wir erzeugen zuerst den (Suchparameter), den wir an die API senden.
 // Dann bauen wir die URL zusammen und hängen den Suchparameter an.
-// Wir empfangen ROH-Daten und trasnformieren in das Schaden-Interface
+// Wir empfangen ROH-Daten und transformieren in das Schaden-Interface
   getSingleInterface(sdnrEingang: string): Observable<Schaden>{
     let sdnrParameter = new HttpParams().set('sdnr', sdnrEingang);
     return this.schadenHttp.get<SchadenRohdaten>(

@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup} from '@angular/forms';
 import { Router } from '@angular/router';
@@ -63,19 +62,15 @@ export class SucheStartComponent implements OnInit, OnChanges {
     const vnr = formValue.vnr;
     if (sdnr.length > 0){
        this.vnrGesperrt = true;
-       console.log('vnr gesperrt');
       }
     else{
       this.vnrGesperrt = false;
-      console.log('vnr geoeffnet');
     }
     if (vnr.length > 0){
       this.sdnrGesperrt = true;
-      console.log('sdnr gesperrt');
     }
     else{
       this.sdnrGesperrt = false;
-      console.log('sdnr geoffnet');
     }
   }
   // tslint:disable-next-line: typedef
@@ -90,7 +85,6 @@ export class SucheStartComponent implements OnInit, OnChanges {
   }
   // tslint:disable-next-line: typedef
   initFormBuilder(){
-    console.log('Init-Durchlauf');
     this.sucheForm = this.fb.group({
        sdnr: [{ value: '', disabled: this.sdnrGesperrt }, [
          EingabeObgrValidator.sdnrNum,
@@ -111,7 +105,6 @@ export class SucheStartComponent implements OnInit, OnChanges {
   // tslint:disable-next-line: typedef
   suchenObgr() {
     const formValue = this.sucheForm.value;
-    console.log('Suchen Button');
     console.log(formValue.sdnr);
     console.log(formValue.vnr);
     this.sdnrGesperrt = false;

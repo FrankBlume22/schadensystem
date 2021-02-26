@@ -9,6 +9,8 @@ import { SchadenListeComponent } from './schaden-liste/schaden-liste.component';
 import { SchadenDetailsComponent } from './schaden-details/schaden-details.component';
 import { SchadenKopfComponent } from './schaden-kopf/schaden-kopf.component';
 import { EditSchadenComponent } from './edit-schaden/edit-schaden.component';
+import { SchadenFormComponent } from './schaden-form/schaden-form.component';
+import { CreateSchadenComponent } from './create-schaden/create-schaden.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { EditSchadenComponent } from './edit-schaden/edit-schaden.component';
     SchadenKopfComponent,
     FehlermeldungenComponent,
     SchadenKopfComponent,
-    EditSchadenComponent
+    EditSchadenComponent,
+    SchadenFormComponent,
+    CreateSchadenComponent
   ]
 })
 export class GevModule { }

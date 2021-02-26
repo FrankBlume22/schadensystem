@@ -3,4 +3,15 @@
   <div class="content">
     <h2>Sie können Ihren Schaden jetzt bearbeiten</h2>
   </div>
+<BR>
+
+<ng-container *ngIf="schaeden$ | async as schaeden">
+
+  <sd-schaden-form class="item"
+      *ngFor="let s of schaeden"
+      [schadenKlasse]="schaeden[0]"
+      (submitSchaden)="updateSchaden($event)">
+    </sd-schaden-form>
+
+</ng-container>
 
