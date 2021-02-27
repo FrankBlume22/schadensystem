@@ -22,6 +22,7 @@ export class EditSchadenComponent implements OnInit {
     private router: Router
   ) { }
 
+  // tslint:disable-next-line: typedef
   updateSchaden(schaden: Schaden) {
     /*this.bs.update(book).subscribe(() => {
       this.router.navigate(

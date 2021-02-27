@@ -34,14 +34,13 @@
 
 <div class="ui middle aligned selection divided list">
     <ng-container *ngIf="schaden$ | async as schaeden">
-      <ng-container sdnr = schaeden[0].sdnr></ng-container>
-
-        <a [routerLink]="['/gev',sdnr]" routerLinkActive="active">
+      <ng-container *ngFor="let s of schaeden; index as i">
+        <a [routerLink]="['/gev', schaeden[i].sdnr]" routerLinkActive="active">
           <sd-schaden-liste-item class="item"
-          *ngFor="let s of schaeden"
-          [schaden]="s"></sd-schaden-liste-item>
+             [schaden]="schaeden[i]">
+          </sd-schaden-liste-item>
         </a>
-
+      </ng-container>
     </ng-container>
 
     <ng-template #loading>
@@ -51,6 +50,6 @@
     </ng-template>
 </div>
 <ng-container *ngIf="schaden$ | async as schaeden">
-  <h1>Bitte wählen Sie Ihren Schaden</h1>
+  <h3>Bitte wählen Sie Ihren Schaden</h3>
 </ng-container>
 

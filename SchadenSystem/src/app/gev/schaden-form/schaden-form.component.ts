@@ -30,6 +30,7 @@ export class SchadenFormComponent implements OnInit, OnChanges {
     this.setFormValues(this.schadenKlasse);
   }
 
+  // tslint:disable-next-line: typedef
   private setFormValues(schaden: SchadenKlasse) {
     console.log('setFormValues-Durchlauf');
     console.log(schaden.geskz);
@@ -47,6 +48,7 @@ export class SchadenFormComponent implements OnInit, OnChanges {
     });
   }
 
+  // tslint:disable-next-line: typedef
   initForm(){
     console.log('InitForm-Durchlauf');
     if (this.schadenForm)
@@ -54,6 +56,8 @@ export class SchadenFormComponent implements OnInit, OnChanges {
     else
     {this.initFormBuilder();}
  }
+
+  // tslint:disable-next-line: typedef
   initFormBuilder(){
     console.log('FormBuilder-Durchlauf');
     this.schadenForm = this.fb.group({
@@ -79,6 +83,8 @@ export class SchadenFormComponent implements OnInit, OnChanges {
       ],
    });
   }
+
+  // tslint:disable-next-line: typedef
   submitForm() {
     console.log('SubmitForm-Durchlauf');
     const formValue = this.schadenForm.value;
@@ -100,7 +106,7 @@ export class SchadenFormComponent implements OnInit, OnChanges {
       vnr: ''
     };
 
-    // Wir bauen es aus den Formulardaten uns der Schadenklasse
+    // Wir bauen es aus den Formulardaten und der Schadenklasse
     // (die uns übergeben wurde) zusammen, da gesKz und SDNR
     // keine Formulardaten sind (bleiben konstant !!)
     newSchaden.sdTyp = formValue.sdTyp;

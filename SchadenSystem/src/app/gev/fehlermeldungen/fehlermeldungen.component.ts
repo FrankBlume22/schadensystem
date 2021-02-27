@@ -17,7 +17,17 @@ export class FehlermeldungenComponent implements OnInit {
       sdnrNum: 'Die SDNR muss numerisch sein'
     },
     vnr: {
-      vnrFormat: 'Die VNR muss aus 14 Zeichen bestehen.'
+      vnrFormat: 'Die VNR muss aus 14 Zeichen bestehen.',
+      required: 'Die VNR muss vorhanden sein'
+    },
+    sdTyp: {
+      required: 'Der Schadentyp muss vorhanden sein'
+    },
+    sdUrsache: {
+      required: 'Die Schadenursache muss vorhanden sein'
+    },
+    sparte: {
+      required: 'Die Sparte muss vorhanden sein'
     }
   };
   constructor() { }

@@ -16,8 +16,8 @@ export class SucheStartComponent implements OnInit, OnChanges {
   sucheForm: FormGroup;
   suche: Suche;
 
-  // Den Schaden lesen wir asynchron ein
-  schaden$: Observable<SchadenKlasse[]>;
+  // Den/die Scha(e)den lesen wir asynchron ein
+  schaden$: Observable<SchadenKlasse[]>;  // Ein Schaden zu einer SDNR
 
   sdnr: string;
   vnr: string;
@@ -105,8 +105,6 @@ export class SucheStartComponent implements OnInit, OnChanges {
   // tslint:disable-next-line: typedef
   suchenObgr() {
     const formValue = this.sucheForm.value;
-    console.log(formValue.sdnr);
-    console.log(formValue.vnr);
     this.sdnrGesperrt = false;
     this.vnrGesperrt = false;
 
@@ -117,23 +115,29 @@ export class SucheStartComponent implements OnInit, OnChanges {
     this.vnr  = formValue.vnr;
 
     if (this.sdnr.length === 9)
-    {this.schadenHolen(); }
+    {
+      this.schadenHolen();
+    }
     else
-    {this.vnrHolen(); }
+    {
+      if (this.vnr.length === 14)
+      {
+         this.vnrHolen();
+      }
+    }
   }
   // tslint:disable-next-line: typedef
   schadenHolen()
   {
-    /*this.dataStorage.data = {
-      umgebung: this.umgebung
-    };*/
     this.schaden$ = this.ss.getSingleObservable(this.sdnr);
   }
   // tslint:disable-next-line: typedef
   vnrHolen()
   {
-    console.log('VNR Button');
+    console.log('VNR holen');
+    this.schaden$ = this.ss.getAll();
   }
+
   // tslint:disable-next-line: typedef
   umgebungSetzen() {
     this.href = this.router.url;
