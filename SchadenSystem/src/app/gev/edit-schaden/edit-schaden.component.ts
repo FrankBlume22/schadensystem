@@ -13,6 +13,10 @@ import { SchadenKlasse } from 'src/app/shared/schaden.klasse';
 })
 export class EditSchadenComponent implements OnInit {
   schaden: Schaden;
+  sdnr: string;
+  sdnrVorn: string;
+  sdnrHinten: string;
+
   // Den Schaden lesen wir asynchron ein
   schaeden$: Observable<SchadenKlasse[]>;
 
@@ -44,6 +48,7 @@ export class EditSchadenComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.pipe(
+      // tslint:disable-next-line: no-shadowed-variable
       map(params => params.get('sdnr')),
       switchMap((sdnr: string) => this.ss.getSingleInterface(sdnr))
     )
@@ -51,7 +56,7 @@ export class EditSchadenComponent implements OnInit {
 
     const params = this.route.snapshot.paramMap;
     const sdnrEdit = params.get('sdnr');
-
+    this.sdnr =  params.get('sdnr');
     this.schaeden$ = this.ss.getSingleObservable(sdnrEdit);
   }
 }

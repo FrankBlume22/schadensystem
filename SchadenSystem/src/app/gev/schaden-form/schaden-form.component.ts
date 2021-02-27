@@ -20,12 +20,10 @@ export class SchadenFormComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit(): void {
-    console.log('ngOnInit-Durchlauf: SchadenFormComponent');
     this.initForm();
   }
 
   ngOnChanges(): void {
-    console.log('ngOnChanges-Durchlauf');
     this.initForm();
     this.setFormValues(this.schadenKlasse);
   }
@@ -50,7 +48,6 @@ export class SchadenFormComponent implements OnInit, OnChanges {
 
   // tslint:disable-next-line: typedef
   initForm(){
-    console.log('InitForm-Durchlauf');
     if (this.schadenForm)
     {return; }
     else

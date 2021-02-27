@@ -1,1 +1,5 @@
-<p>create-schaden works!</p>
+<sd-schaden-kopf></sd-schaden-kopf>
+<h2>Sie können nun Ihren <span>Neuschaden</span> anlegen</h2>
+<sd-schaden-form (submitSchaden)="createSchaden($event)"
+                 [schadenKlasse]="schaden">
+</sd-schaden-form>
