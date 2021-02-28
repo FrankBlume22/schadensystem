@@ -28,12 +28,10 @@ export class EditSchadenComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   updateSchaden(schaden: Schaden) {
-    /*this.bs.update(book).subscribe(() => {
-      this.router.navigate(
-        ['../../..', 'books', book.isbn],
-        { relativeTo: this.route }
-      );
-    });*/
+    console.log('Update-Durchlauf');
+    console.log(schaden);
+
+    // this.ss.update(schaden).subscribe(() => {  });
 
     // Wir kommen von diesem Pfad: GEV/EDIT/123456789 (Beispiel)
     // Wir wollen zu diesem Pfad: GEV/123456789
@@ -42,8 +40,6 @@ export class EditSchadenComponent implements OnInit {
       ['../..', schaden.sdnr],
       { relativeTo: this.route }
     );
-    console.log('Update-Durchlauf');
-    console.log(schaden);
   }
 
   ngOnInit(): void {

@@ -11,7 +11,8 @@ import { SchadenKlasse } from './schaden.klasse';
   providedIn: 'root'
 })
 export class SchadenStoreService {
-  private schadenAPI = 'http://localhost:3000';
+  // private schadenAPI = 'http://localhost:3000';
+  private schadenAPI = 'https://my-json-server.typicode.com/FrankBlume22/api'
 
   constructor(private schadenHttp: HttpClient) { }
 
@@ -103,6 +104,16 @@ remove(sdnrLoeschen: string): Observable<any> {
 //  return this.schadenHttp.delete(url , { responseType: 'text'});
   return this.schadenHttp.delete(url , { responseType: 'text'});
 
+}
+
+update(schaden: Schaden): Observable<any>{
+  const sdnrParameter = new HttpParams().set('?sdnr', schaden.sdnr);
+  return this.schadenHttp.put(
+    `${this.schadenAPI}/schaden${sdnrParameter}`, schaden,
+    { responseType: 'text' }
+  ).pipe(
+    catchError(this.errorHandler)
+  );
 }
 private errorHandler(error: HttpErrorResponse): Observable<any>{
     console.error('Fehler aufgetreten im SchadenStoreService');

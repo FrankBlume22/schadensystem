@@ -1,25 +1,28 @@
 {
   "Schaden": [
     {
-      "gezkz": "00",
+      "gezkz": "79",
       "sdnr": "100000121",
       "sdTyp": "TK",
       "sdUrsache": "741",
-      "sparte": "KS"
+      "sparte": "KS",
+      "vnr": "12345678901111"
     },
     {
       "geskz": "00",
       "sdnr": "100000221",
       "sdTyp": "VK",
       "sdUrsache": "130",
-      "sparte": "KS"
+      "sparte": "KS",
+      "vnr": "12345678902222"
     },
     {
       "geskz": "79",
       "sdnr": "100000321",
       "sdTyp": "AH",
       "sdUrsache": "21",
-      "sparte": "HS"
+      "sparte": "HS",
+      "vnr": "12345678902222"
     }
   ],
   "Zustaendig": [

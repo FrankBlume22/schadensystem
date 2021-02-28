@@ -1,5 +1,11 @@
 {
-  "Schaden": [
+  "schadenlfdnr": [
+    {
+      "id": "100000121",
+      "sdnr": "100000121"
+    }
+  ],
+  "schaden": [
     {
       "gezkz": "79",
       "sdnr": "100000121",
@@ -25,7 +31,7 @@
       "vnr": "12345678902222"
     }
   ],
-  "Zustaendig": [
+  "zustaendig": [
     {
       "sparte": "KS",
       "bearbGs": "160",
