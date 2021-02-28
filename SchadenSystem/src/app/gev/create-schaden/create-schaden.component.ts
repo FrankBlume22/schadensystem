@@ -10,7 +10,7 @@ import { SchadenKlasse } from 'src/app/shared/schaden.klasse';
 })
 export class CreateSchadenComponent implements OnInit {
   // tslint:disable-next-line: new-parens
-  schaden = new SchadenKlasse('', '', '', '', '', '');
+  schaden = new SchadenKlasse('', '', '', '', '', '', '');
 
   constructor(
     private route: ActivatedRoute,
@@ -27,6 +27,7 @@ export class CreateSchadenComponent implements OnInit {
   initLeerschaden(){
     this.schaden.geskz = '00';
     this.schaden.sdnr = '999888721';
+    this.schaden.id = '998888721';
   }
   // tslint:disable-next-line: typedef
   createSchaden(schaden: Schaden) {

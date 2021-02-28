@@ -31,6 +31,7 @@ export class SchadenFormComponent implements OnInit, OnChanges {
   // tslint:disable-next-line: typedef
   private setFormValues(schaden: SchadenKlasse) {
     console.log('setFormValues-Durchlauf');
+    console.log(schaden.id);
     console.log(schaden.geskz);
     console.log(schaden.sdTyp);
     console.log(schaden.sdUrsache);
@@ -90,11 +91,13 @@ export class SchadenFormComponent implements OnInit, OnChanges {
     console.log(formValue.vnr);
     console.log(formValue.sdUrsache);
     console.log(formValue.sparte);
+    console.log(this.schadenKlasse.id);
     console.log(this.schadenKlasse.geskz);
     console.log(this.schadenKlasse.sdnr);
 
     // Das Interface "Schaden" muss einmal initialisiert werden !!
     const newSchaden: Schaden = {
+      id: '',
       geskz: '',
       sdnr: '',
       sdTyp: '',
@@ -112,6 +115,7 @@ export class SchadenFormComponent implements OnInit, OnChanges {
     newSchaden.vnr = formValue.vnr;
     newSchaden.geskz = this.schadenKlasse.geskz;
     newSchaden.sdnr = this.schadenKlasse.sdnr;
+    newSchaden.id = this.schadenKlasse.id;
 
     this.submitSchaden.emit(newSchaden);
     this.schadenForm.reset();

@@ -7,6 +7,7 @@
   ],
   "schaden": [
     {
+      "id": "100000121",
       "gezkz": "79",
       "sdnr": "100000121",
       "sdTyp": "TK",
@@ -15,32 +16,33 @@
       "vnr": "12345678901111"
     },
     {
+      "id": "100000221",
       "geskz": "00",
       "sdnr": "100000221",
       "sdTyp": "VK",
       "sdUrsache": "130",
       "sparte": "KS",
       "vnr": "12345678902222"
-    },
-    {
-      "geskz": "79",
-      "sdnr": "100000321",
-      "sdTyp": "AH",
-      "sdUrsache": "21",
-      "sparte": "HS",
-      "vnr": "12345678902222"
     }
   ],
   "zustaendig": [
     {
+      "id1": "1",
       "sparte": "KS",
       "bearbGs": "160",
       "referat": "H160"
     },
     {
+      "id": "2",
       "sparte": "HS",
       "bearbGs": "260",
       "referat": "K260"
+    },
+    {
+      "id": "3",
+      "sparte": "SS",
+      "bearbGs": "560",
+      "referat": "M260"
     }
   ]
 }

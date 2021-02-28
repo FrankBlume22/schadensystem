@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { Schaden } from 'src/app/shared/schaden';
 
 import { SchadenStoreService } from 'src/app/shared/schaden-store.service';
-import { SchadenKlasse } from 'src/app/shared/schaden.klasse';
 
 @Component({
   selector: 'sd-schaden-details',
@@ -12,7 +12,7 @@ import { SchadenKlasse } from 'src/app/shared/schaden.klasse';
 })
 export class SchadenDetailsComponent implements OnInit {
   // Den Schaden lesen wir asynchron ein
-  schaeden$: Observable<SchadenKlasse[]>;
+  schaeden$: Observable<Schaden>;
 
   constructor(
     private ss: SchadenStoreService,
@@ -21,6 +21,14 @@ export class SchadenDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    const params = this.route.snapshot.paramMap;
+    console.log(params.get('sdnr'));
+    this.schaeden$ = this.ss.getSingleObservable(params.get('sdnr'));
+   /* this.ss.getSingleKlasse(params.get('sdnr'))
+      .subscribe(b => this.schaden = b);*/
+  }
+
+  ngOnChanges() {
     const params = this.route.snapshot.paramMap;
     console.log(params.get('sdnr'));
     this.schaeden$ = this.ss.getSingleObservable(params.get('sdnr'));

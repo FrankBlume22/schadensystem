@@ -5,6 +5,7 @@ import { SchadenRohdaten } from "./schaden-rohdaten";
 export class SchadenFactory {
   static empty(): Schaden{
     return {
+      id: '',
       geskz: '',
       sdnr: '',
       sdTyp: '',

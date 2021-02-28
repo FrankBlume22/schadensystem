@@ -1,4 +1,5 @@
 export interface Schaden {
+  id: string;
   geskz: string;
   sdnr: string;
   sdTyp: string;

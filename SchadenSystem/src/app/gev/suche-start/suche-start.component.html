@@ -50,14 +50,14 @@
 
 <div class="ui middle aligned selection divided list">
     <ng-container *ngIf="schaden$ | async as schaeden">
-      <ng-container *ngFor="let s of schaeden; index as i">
-        <a [routerLink]="['/gev', schaeden[i].sdnr]" routerLinkActive="active">
+   <!--   <ng-container *ngFor="let s of schaeden; index as i"> -->
+        <a [routerLink]="['/gev', schaeden.sdnr]" routerLinkActive="active">
           <sd-schaden-liste-item class="item"
-             [schaden]="schaeden[i]">
+             [schaden]="schaeden">
           </sd-schaden-liste-item>
         </a>
       </ng-container>
-    </ng-container>
+   <!-- </ng-container> -->
 
     <ng-template #loading>
       <div class="ui active dimmer">

@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { Schaden } from 'src/app/shared/schaden';
 import { SchadenStoreService } from 'src/app/shared/schaden-store.service';
-import { SchadenKlasse } from 'src/app/shared/schaden.klasse';
 
 @Component({
   selector: 'sd-edit-schaden',
@@ -18,7 +17,7 @@ export class EditSchadenComponent implements OnInit {
   sdnrHinten: string;
 
   // Den Schaden lesen wir asynchron ein
-  schaeden$: Observable<SchadenKlasse[]>;
+  schaeden$: Observable<Schaden>;
 
   constructor(
     private ss: SchadenStoreService,
@@ -27,11 +26,11 @@ export class EditSchadenComponent implements OnInit {
   ) { }
 
   // tslint:disable-next-line: typedef
-  updateSchaden(schaden: Schaden) {
+  updateSchaden(schaden: Schaden, sdnr: string) {
     console.log('Update-Durchlauf');
     console.log(schaden);
 
-    // this.ss.update(schaden).subscribe(() => {  });
+     this.ss.update(schaden, this.sdnr).subscribe(() => {  });
 
     // Wir kommen von diesem Pfad: GEV/EDIT/123456789 (Beispiel)
     // Wir wollen zu diesem Pfad: GEV/123456789
@@ -43,13 +42,13 @@ export class EditSchadenComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.paramMap.pipe(
-      // tslint:disable-next-line: no-shadowed-variable
+   /* this.route.paramMap.pipe(
+      tslint:disable-next-line: no-shadowed-variable
       map(params => params.get('sdnr')),
-      switchMap((sdnr: string) => this.ss.getSingleInterface(sdnr))
+      switchMap((sdnr: string) => this.ss.getSingleObservable(sdnr))
     )
     .subscribe(response => this.schaden = response);
-
+    */
     const params = this.route.snapshot.paramMap;
     const sdnrEdit = params.get('sdnr');
     this.sdnr =  params.get('sdnr');

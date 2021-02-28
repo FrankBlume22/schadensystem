@@ -1,4 +1,5 @@
 export interface SchadenRohdaten {
+  id: string;
   geskz: string;
   sdnr: string;
   sdTyp: string;

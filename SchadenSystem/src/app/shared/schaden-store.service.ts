@@ -11,8 +11,8 @@ import { SchadenKlasse } from './schaden.klasse';
   providedIn: 'root'
 })
 export class SchadenStoreService {
-  // private schadenAPI = 'http://localhost:3000';
-  private schadenAPI = 'https://my-json-server.typicode.com/FrankBlume22/api'
+  private schadenAPI = 'http://localhost:3000';
+  // private schadenAPI = 'https://my-json-server.typicode.com/FrankBlume22/api'
 
   constructor(private schadenHttp: HttpClient) { }
 
@@ -26,25 +26,10 @@ export class SchadenStoreService {
 
 // Wir erzeugen zuerst den (Suchparameter), den wir an die API senden.
 // Dann bauen wir die URL zusammen und hängen den Suchparameter an.
-// Wir empfangen ROH-Daten und transformieren in das Schaden-Interface
-  getSingleInterface(sdnrEingang: string): Observable<Schaden>{
-    let sdnrParameter = new HttpParams().set('sdnr', sdnrEingang);
-    return this.schadenHttp.get<SchadenRohdaten>(
-      `${this.schadenAPI}/schaden`, {params: sdnrParameter}
-      ).pipe(
-        retry(3),
-        map(sd => SchadenFactory.vonDenRohdaten(sd)),
-        catchError(this.errorHandler)
-      );
- }
-
-// Wir erzeugen zuerst den (Suchparameter), den wir an die API senden.
-// Dann bauen wir die URL zusammen und hängen den Suchparameter an.
 // Wir empfangen ROH-Daten und trasnformieren in das Schaden-Interface
 getSingleKlasse(sdnrEingang: string): Observable<SchadenKlasse>{
-  const sdnrParameter = new HttpParams().set('sdnr', sdnrEingang);
   return this.schadenHttp.get<SchadenRohdaten>(
-    `${this.schadenAPI}/schaden`, {params: sdnrParameter}
+    `${this.schadenAPI}/schaden/${sdnrEingang}`
     ).pipe(
       retry(3),
       map(sd => SchadenFactory.vonDenRohdaten(sd)),
@@ -55,33 +40,14 @@ getSingleKlasse(sdnrEingang: string): Observable<SchadenKlasse>{
 // Wir erzeugen zuerst den (Suchparameter), den wir an die API senden.
 // Dann bauen wir die URL zusammen und hängen den Suchparameter an.
 // Wir empfangen ROH-Daten und trasnformieren in das Schaden-Interface
-getSingleObservable(sdnrEingang: string): Observable<SchadenKlasse[]>{
-  const sdnrParameter = new HttpParams().set('sdnr', sdnrEingang);
-  return this.schadenHttp.get<SchadenRohdaten[]>(
-    `${this.schadenAPI}/schaden`, {params: sdnrParameter}
+getSingleObservable(sdnrEingang: string): Observable<Schaden>{
+  return this.schadenHttp.get<Schaden>(
+    `${this.schadenAPI}/schaden/${sdnrEingang}`
     ).pipe(
       retry(3),
-      map(vonDenRohdaten =>
-        vonDenRohdaten.map(sd => SchadenFactory.vonDenRohdaten(sd)),
+   //   map(vonDenRohdaten =>
+     //   vonDenRohdaten.map(sd => SchadenFactory.vonDenRohdaten(sd)),
         catchError(this.errorHandler)
-      )
-    );
-}
-
-// Wir erzeugen zuerst den (Suchparameter), den wir an die API senden.
-// Dann bauen wir die URL zusammen und hängen den Suchparameter an.
-// Wir empfangen ROH-Daten und transformieren in das Schaden-Interface
-getAllGEV(gesKzEingang: string): Observable<SchadenKlasse[]> {
-  console.log(gesKzEingang) ;
-  const gesKzParameter = new HttpParams().set('geskz', gesKzEingang);
-  return this.schadenHttp.get<SchadenRohdaten[]>(
-    `${this.schadenAPI}/schaden`, {params: gesKzParameter}
-    ).pipe(
-      retry(3),
-      map(vonDenRohdaten =>
-      vonDenRohdaten.map(sd => SchadenFactory.vonDenRohdaten(sd)),
-      catchError(this.errorHandler)
-       )
     );
 }
 
@@ -91,25 +57,15 @@ getSingleURL(): string{
   return urlString;
 }
 
-/*remove(sdnrLoeschen: string): Observable<any> {
-//  const url = `${this.schadenAPI}/schaden/${sdnrLoeschen}`;
-  // const url = `${this.schadenAPI}/schaden/sdnr/${sdnrLoeschen}`;
-  return this.schadenHttp.delete(`${this.schadenAPI}/schaden/sdnr/${sdnrLoeschen}`, { responseType: 'text'});
-  // return this.schadenHttp.delete(url, {
-   // headers: new HttpHeaders({ 'Content-Type': 'application/json' })//
-}*/
-
 remove(sdnrLoeschen: string): Observable<any> {
-  const url = `${this.schadenAPI}/schaden?sdnr=${sdnrLoeschen}`;
-//  return this.schadenHttp.delete(url , { responseType: 'text'});
+  const url = `${this.schadenAPI}/schaden/${sdnrLoeschen}`;
   return this.schadenHttp.delete(url , { responseType: 'text'});
 
 }
 
-update(schaden: Schaden): Observable<any>{
-  const sdnrParameter = new HttpParams().set('?sdnr', schaden.sdnr);
+update(schaden: Schaden, sdnr: string): Observable<any>{
   return this.schadenHttp.put(
-    `${this.schadenAPI}/schaden${sdnrParameter}`, schaden,
+    `${this.schadenAPI}/schaden/${sdnr}`, schaden,
     { responseType: 'text' }
   ).pipe(
     catchError(this.errorHandler)

@@ -1,5 +1,4 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { equal, strictEqual } from 'assert';
 import { DataStore } from 'src/app/shared/data-store';
 import { Schaden } from 'src/app/shared/schaden';
 import { SchadenStoreService } from 'src/app/shared/schaden-store.service';
@@ -32,8 +31,6 @@ umgebungTab: string[] = [];
   // tslint:disable-next-line: typedef
   ngOnInit() {
     this.gesKz = this.gesKzSetzen();
-    this.ss.getAllGEV(this.gesKz).subscribe(res => this.schaeden = res);
-    console.log(this.schaeden.length);
   }
 
   // tslint:disable-next-line: typedef

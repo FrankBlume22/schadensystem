@@ -8,8 +8,7 @@
 <ng-container *ngIf="schaeden$ | async as schaeden">
 
   <sd-schaden-form class="item"
-      *ngFor="let s of schaeden"
-      [schadenKlasse]="schaeden[0]"
+      [schadenKlasse]="schaeden"
       (submitSchaden)="updateSchaden($event)">
     </sd-schaden-form>
 

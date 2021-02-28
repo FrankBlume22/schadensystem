@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup} from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Suche } from 'src/app/gev/suche';
+import { Schaden } from 'src/app/shared/schaden';
 import { SchadenStoreService } from 'src/app/shared/schaden-store.service';
 import { SchadenKlasse } from 'src/app/shared/schaden.klasse';
 import { EingabeObgrValidator } from '../eingabe-obgr-validator';
@@ -17,7 +18,8 @@ export class SucheStartComponent implements OnInit, OnChanges {
   suche: Suche;
 
   // Den/die Scha(e)den lesen wir asynchron ein
-  schaden$: Observable<SchadenKlasse[]>;  // Ein Schaden zu einer SDNR
+  schaden$: Observable<Schaden>;  // Ein Schaden zu einer SDNR
+  schaeden$: Observable<Schaden[]>;  // Alle Schäden
 
   sdnr: string;
   vnr: string;
@@ -135,7 +137,7 @@ export class SucheStartComponent implements OnInit, OnChanges {
   vnrHolen()
   {
     console.log('VNR holen');
-    this.schaden$ = this.ss.getAll();
+    this.schaeden$ = this.ss.getAll();
   }
 
   // tslint:disable-next-line: typedef
