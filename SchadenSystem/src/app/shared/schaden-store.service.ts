@@ -6,6 +6,8 @@ import { HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
 import { throwError,Observable } from 'rxjs';
 import { retry, map, catchError } from 'rxjs/operators';
 import { SchadenKlasse } from './schaden.klasse';
+import { Lfdnr } from '../gev/lfdnr';
+import { LfdnrRaw } from '../gev/lfdnr-raw';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +18,7 @@ export class SchadenStoreService {
 
   constructor(private schadenHttp: HttpClient) { }
 
+
   getAll(): Observable<Schaden[]>{
        return this.schadenHttp.get<Schaden[]>(`${this.schadenAPI}/schaden`)
        .pipe(
@@ -24,9 +27,26 @@ export class SchadenStoreService {
          );
   }
 
-// Wir erzeugen zuerst den (Suchparameter), den wir an die API senden.
-// Dann bauen wir die URL zusammen und hängen den Suchparameter an.
-// Wir empfangen ROH-Daten und trasnformieren in das Schaden-Interface
+  // Wir lesen die aktuelle LFDNR für einen neuen Schaden
+  // tslint:disable-next-line: typedef
+  getLfdnr(): Observable<Lfdnr>{
+    return this.schadenHttp.get<Lfdnr>(`${this.schadenAPI}/schadenlfdnr`)
+    .pipe(
+      retry(3),
+      catchError(this.errorHandler)
+      );
+   }
+
+  // Wir lesen die aktuelle LFDNR für einen neuen Schaden
+  // tslint:disable-next-line: typedef
+  getLfdnrAll(): Observable<Lfdnr>{
+    return this.schadenHttp.get<LfdnrRaw>(`${this.schadenAPI}/schadenlfdnr`)
+    .pipe(
+      retry(3),
+      catchError(this.errorHandler)
+      );
+   }
+
 getSingleKlasse(sdnrEingang: string): Observable<SchadenKlasse>{
   return this.schadenHttp.get<SchadenRohdaten>(
     `${this.schadenAPI}/schaden/${sdnrEingang}`
@@ -35,43 +55,57 @@ getSingleKlasse(sdnrEingang: string): Observable<SchadenKlasse>{
       map(sd => SchadenFactory.vonDenRohdaten(sd)),
       catchError(this.errorHandler)
     );
-}
+ }
 
-// Wir erzeugen zuerst den (Suchparameter), den wir an die API senden.
-// Dann bauen wir die URL zusammen und hängen den Suchparameter an.
-// Wir empfangen ROH-Daten und trasnformieren in das Schaden-Interface
-getSingleObservable(sdnrEingang: string): Observable<Schaden>{
+ // Wir lesen einen Schaden mit seiner SDNR
+ getSingleObservable(sdnrEingang: string): Observable<Schaden>{
   return this.schadenHttp.get<Schaden>(
     `${this.schadenAPI}/schaden/${sdnrEingang}`
     ).pipe(
       retry(3),
-   //   map(vonDenRohdaten =>
-     //   vonDenRohdaten.map(sd => SchadenFactory.vonDenRohdaten(sd)),
         catchError(this.errorHandler)
     );
-}
+ }
 
-// URL der Schaden-Objekte
-getSingleURL(): string{
+ // URL der Schaden-Objekte
+ getSingleURL(): string{
   const urlString = `${this.schadenAPI}/schaden`;
   return urlString;
-}
+ }
 
-remove(sdnrLoeschen: string): Observable<any> {
+ // URL der Schaden-Objekte
+ getSingleApiPfad(): string{
+  const apiString = `${this.schadenAPI}`;
+  return apiString;
+ }
+
+ // Wir löschen einen Schaden
+ remove(sdnrLoeschen: string): Observable<any> {
   const url = `${this.schadenAPI}/schaden/${sdnrLoeschen}`;
   return this.schadenHttp.delete(url , { responseType: 'text'});
 
-}
+ }
 
-update(schaden: Schaden, sdnr: string): Observable<any>{
+ // Update auf einen Schaden
+ update(schaden: Schaden, sdnr: string): Observable<any>{
   return this.schadenHttp.put(
     `${this.schadenAPI}/schaden/${sdnr}`, schaden,
     { responseType: 'text' }
   ).pipe(
     catchError(this.errorHandler)
   );
-}
-private errorHandler(error: HttpErrorResponse): Observable<any>{
+ }
+
+ create(schaden: Schaden): Observable<any> {
+  return this.schadenHttp.post(
+    `${this.schadenAPI}/schaden`, schaden,
+    { responseType: 'text' }
+  ).pipe(
+    catchError(this.errorHandler)
+  );
+ }
+
+ private errorHandler(error: HttpErrorResponse): Observable<any>{
     console.error('Fehler aufgetreten im SchadenStoreService');
     return throwError(error);
   }

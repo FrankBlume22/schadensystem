@@ -30,7 +30,7 @@ export class EditSchadenComponent implements OnInit {
     console.log('Update-Durchlauf');
     console.log(schaden);
 
-     this.ss.update(schaden, this.sdnr).subscribe(() => {  });
+    this.ss.update(schaden, this.sdnr).subscribe(() => {  });
 
     // Wir kommen von diesem Pfad: GEV/EDIT/123456789 (Beispiel)
     // Wir wollen zu diesem Pfad: GEV/123456789

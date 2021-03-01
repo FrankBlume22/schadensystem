@@ -1,6 +1,7 @@
-import { SchadenDetailsComponent } from "../gev/schaden-details/schaden-details.component";
-import { Schaden } from "./schaden";
-import { SchadenRohdaten } from "./schaden-rohdaten";
+import { Lfdnr } from '../gev/lfdnr';
+import { LfdnrRaw } from '../gev/lfdnr-raw';
+import { Schaden } from './schaden';
+import { SchadenRohdaten } from './schaden-rohdaten';
 
 export class SchadenFactory {
   static empty(): Schaden{
@@ -20,6 +21,11 @@ export class SchadenFactory {
   static vonDenRohdaten(sd: SchadenRohdaten): Schaden{
       return{
       ...sd
+    };
+  }
+  static fromLfdnrRaw(l: LfdnrRaw): Lfdnr{
+    return {
+      ...l
     };
   }
 }

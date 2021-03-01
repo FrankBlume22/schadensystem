@@ -132,6 +132,8 @@ export class SucheStartComponent implements OnInit, OnChanges {
   schadenHolen()
   {
     this.schaden$ = this.ss.getSingleObservable(this.sdnr);
+    console.log('Schaden');
+    console.log(this.schaden$);
   }
   // tslint:disable-next-line: typedef
   vnrHolen()

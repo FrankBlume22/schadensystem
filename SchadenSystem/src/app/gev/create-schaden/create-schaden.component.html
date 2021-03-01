@@ -1,4 +1,10 @@
 <sd-schaden-kopf></sd-schaden-kopf>
+
+<ng-container *ngIf="lfdnr">
+  <div>Interface vorhanden</div>
+     {{ lfdnr.id }}
+</ng-container>
+
 <h2>Sie können nun Ihren <span>Neuschaden</span> anlegen</h2>
 <sd-schaden-form (submitSchaden)="createSchaden($event)"
                  [schadenKlasse]="schaden">
