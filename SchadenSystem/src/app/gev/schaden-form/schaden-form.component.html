@@ -38,8 +38,16 @@
   [disabled]="schadenForm.invalid">
   <i class="write icon"></i>Speichern
   </button>
-  <a class="ui tiny red labeled icon button"
-    [routerLink]="['../../']">
-    <i class="remove icon"></i> Bearbeitung abbrechen
-  </a>
+  <ng-container *ngIf="schadenKlasse.sdnr !== '999999999' ">
+    <a class="ui tiny red labeled icon button"
+      [routerLink]="['../../', schadenKlasse.sdnr]">
+      <i class="remove icon"></i> Bearbeitung abbrechen
+    </a>
+  </ng-container>
+  <ng-container *ngIf="schadenKlasse.sdnr === '999999999' ">
+    <a class="ui tiny red labeled icon button"
+      [routerLink]="['../../']">
+      <i class="remove icon"></i> Bearbeitung abbrechen
+    </a>
+  </ng-container>
 </form>

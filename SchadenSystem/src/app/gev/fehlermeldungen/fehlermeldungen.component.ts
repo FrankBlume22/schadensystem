@@ -14,7 +14,8 @@ export class FehlermeldungenComponent implements OnInit {
   private allMessages = {
     sdnr: {
       sdnrFormat: 'Die SDNR muss aus 9 Zeichen bestehen',
-      sdnrNum: 'Die SDNR muss numerisch sein'
+      sdnrNum: 'Die SDNR muss numerisch sein',
+      sdnrVorhanden: 'Die SDNR ist unbekannt'
     },
     vnr: {
       vnrFormat: 'Die VNR muss aus 14 Zeichen bestehen.',

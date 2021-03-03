@@ -1,4 +1,4 @@
 export interface LfdnrRaw {
   id: string;
-  sdnrLfdnr: string;
+  sdnr: string;
 }

@@ -20,9 +20,9 @@ export class SchadenDetailsComponent implements OnInit {
     private router: Router,
   ) { }
 
+  // tslint:disable-next-line: typedef
   ngOnInit() {
     const params = this.route.snapshot.paramMap;
-    console.log(params.get('sdnr'));
     this.schaeden$ = this.ss.getSingleObservable(params.get('sdnr'));
    /* this.ss.getSingleKlasse(params.get('sdnr'))
       .subscribe(b => this.schaden = b);*/
@@ -30,12 +30,12 @@ export class SchadenDetailsComponent implements OnInit {
 
   ngOnChanges() {
     const params = this.route.snapshot.paramMap;
-    console.log(params.get('sdnr'));
     this.schaeden$ = this.ss.getSingleObservable(params.get('sdnr'));
    /* this.ss.getSingleKlasse(params.get('sdnr'))
       .subscribe(b => this.schaden = b);*/
   }
 
+  // tslint:disable-next-line: typedef
   removeSchaden(){
     if (confirm('Schaden wirklich löschen?')){
       const params = this.route.snapshot.paramMap;

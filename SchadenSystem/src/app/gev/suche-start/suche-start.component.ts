@@ -1,12 +1,14 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup} from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors} from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { debounceTime, map } from 'rxjs/operators';
 import { Suche } from 'src/app/gev/suche';
 import { Schaden } from 'src/app/shared/schaden';
 import { SchadenStoreService } from 'src/app/shared/schaden-store.service';
 import { SchadenKlasse } from 'src/app/shared/schaden.klasse';
 import { EingabeObgrValidator } from '../eingabe-obgr-validator';
+import { SdnrExistService } from '../sdnr-exist.service';
 
 @Component({
   selector: 'sd-suche-start',
@@ -36,7 +38,8 @@ export class SucheStartComponent implements OnInit, OnChanges {
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private ss: SchadenStoreService
+    private ss: SchadenStoreService,
+    private sdnrExistService: SdnrExistService
 
     // private sdnrExistsValidator: SdnrExistValidatorService,
     // private dataStorage: DataStore
@@ -92,7 +95,7 @@ export class SucheStartComponent implements OnInit, OnChanges {
          EingabeObgrValidator.sdnrNum,
          EingabeObgrValidator.sdnrFormat
          ],
-         // this.sdnrVorhanden ? null : [this.sdnrExistsValidator]
+           [this.sdnrExistService]
        ],
        vnr: [{ value: '', disabled: this.vnrGesperrt }, [
          EingabeObgrValidator.vnrFormat
@@ -119,12 +122,16 @@ export class SucheStartComponent implements OnInit, OnChanges {
     if (this.sdnr.length === 9)
     {
       this.schadenHolen();
+      // Eventuelles VNR-Objekt löschen
+      this.schaeden$ = null;
     }
     else
     {
       if (this.vnr.length === 14)
       {
          this.vnrHolen();
+         // Eventuelles SDNR-Objekt löschen
+         this.schaden$ = null;
       }
     }
   }
@@ -132,8 +139,6 @@ export class SucheStartComponent implements OnInit, OnChanges {
   schadenHolen()
   {
     this.schaden$ = this.ss.getSingleObservable(this.sdnr);
-    console.log('Schaden');
-    console.log(this.schaden$);
   }
   // tslint:disable-next-line: typedef
   vnrHolen()

@@ -3,7 +3,7 @@ import { Schaden } from './schaden';
 import { SchadenRohdaten } from './schaden-rohdaten';
 import { SchadenFactory } from './schaden-factory';
 import { HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
-import { throwError,Observable } from 'rxjs';
+import { throwError, Observable } from 'rxjs';
 import { retry, map, catchError } from 'rxjs/operators';
 import { SchadenKlasse } from './schaden.klasse';
 import { Lfdnr } from '../gev/lfdnr';
@@ -27,27 +27,7 @@ export class SchadenStoreService {
          );
   }
 
-  // Wir lesen die aktuelle LFDNR für einen neuen Schaden
-  // tslint:disable-next-line: typedef
-  getLfdnr(): Observable<Lfdnr>{
-    return this.schadenHttp.get<Lfdnr>(`${this.schadenAPI}/schadenlfdnr`)
-    .pipe(
-      retry(3),
-      catchError(this.errorHandler)
-      );
-   }
-
-  // Wir lesen die aktuelle LFDNR für einen neuen Schaden
-  // tslint:disable-next-line: typedef
-  getLfdnrAll(): Observable<Lfdnr>{
-    return this.schadenHttp.get<LfdnrRaw>(`${this.schadenAPI}/schadenlfdnr`)
-    .pipe(
-      retry(3),
-      catchError(this.errorHandler)
-      );
-   }
-
-getSingleKlasse(sdnrEingang: string): Observable<SchadenKlasse>{
+  getSingleKlasse(sdnrEingang: string): Observable<SchadenKlasse>{
   return this.schadenHttp.get<SchadenRohdaten>(
     `${this.schadenAPI}/schaden/${sdnrEingang}`
     ).pipe(
@@ -67,13 +47,13 @@ getSingleKlasse(sdnrEingang: string): Observable<SchadenKlasse>{
     );
  }
 
- // URL der Schaden-Objekte
+ // URL der Schaden-URL
  getSingleURL(): string{
   const urlString = `${this.schadenAPI}/schaden`;
   return urlString;
  }
 
- // URL der Schaden-Objekte
+ // String der Schaden-API
  getSingleApiPfad(): string{
   const apiString = `${this.schadenAPI}`;
   return apiString;
@@ -96,6 +76,7 @@ getSingleKlasse(sdnrEingang: string): Observable<SchadenKlasse>{
   );
  }
 
+ // Neuen Schaden anlegen
  create(schaden: Schaden): Observable<any> {
   return this.schadenHttp.post(
     `${this.schadenAPI}/schaden`, schaden,
@@ -104,8 +85,39 @@ getSingleKlasse(sdnrEingang: string): Observable<SchadenKlasse>{
     catchError(this.errorHandler)
   );
  }
+  // ------------------- VERARBEITUNG: SCHADENLFDNR ----------------------
+  // Update auf einen Schaden
+  updateLfdnr(lfdnr: Lfdnr): Observable<any>{
+  return this.schadenHttp.put(
+    `${this.schadenAPI}/schadenlfdnr/1`, lfdnr,
+    { responseType: 'text' }
+  ).pipe(
+    catchError(this.errorHandler)
+  );
+ }
 
- private errorHandler(error: HttpErrorResponse): Observable<any>{
+  // Wir lesen die aktuelle LFDNR für einen neuen Schaden
+  // tslint:disable-next-line: typedef
+  getLfdnrAll(): Observable<Lfdnr>{
+    return this.schadenHttp.get<LfdnrRaw>(`${this.schadenAPI}/schadenlfdnr`)
+    .pipe(
+      retry(3),
+      catchError(this.errorHandler)
+      );
+  }
+
+  // ------------------- VERARBEITUNG: VALIDATOREN------------------------
+  // Für Validator, ob SDNR bekannt ist
+  check(sdnr: string): Observable<any> {
+    console.log('sdnr-in-check');
+    console.log(sdnr);
+    return this.schadenHttp.get(
+      `${this.schadenAPI}/schaden/${sdnr}`
+    ).pipe(
+      catchError(this.errorHandler)
+    );
+  }
+  private errorHandler(error: HttpErrorResponse): Observable<any>{
     console.error('Fehler aufgetreten im SchadenStoreService');
     return throwError(error);
   }

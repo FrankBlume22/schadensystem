@@ -30,15 +30,6 @@ export class SchadenFormComponent implements OnInit, OnChanges {
 
   // tslint:disable-next-line: typedef
   private setFormValues(schaden: SchadenKlasse) {
-    console.log('setFormValues-Durchlauf');
-    console.log(schaden.id);
-    console.log(schaden.geskz);
-    console.log(schaden.sdTyp);
-    console.log(schaden.sdUrsache);
-    console.log(schaden.sdnr);
-    console.log(schaden.sparte);
-    console.log(schaden.vnr);
-
     this.schadenForm.setValue({
       sdTyp: schaden.sdTyp,
       sdUrsache: schaden.sdUrsache,
@@ -47,17 +38,21 @@ export class SchadenFormComponent implements OnInit, OnChanges {
     });
   }
 
+  // Liegt bereits ein initialisiertes Formular vor,
+  // dann verlassen wir die Initialisierung sofort
   // tslint:disable-next-line: typedef
   initForm(){
-    if (this.schadenForm)
-    {return; }
+    if (this.schadenForm) {
+      return;
+    }
     else
-    {this.initFormBuilder();}
+    {
+      this.initFormBuilder();
+    }
  }
 
   // tslint:disable-next-line: typedef
   initFormBuilder(){
-    console.log('FormBuilder-Durchlauf');
     this.schadenForm = this.fb.group({
        sdTyp: [{ value: '', disabled: false }, [
          Validators.required
@@ -84,16 +79,7 @@ export class SchadenFormComponent implements OnInit, OnChanges {
 
   // tslint:disable-next-line: typedef
   submitForm() {
-    console.log('SubmitForm-Durchlauf');
     const formValue = this.schadenForm.value;
-
-    console.log(formValue.sdTyp);
-    console.log(formValue.vnr);
-    console.log(formValue.sdUrsache);
-    console.log(formValue.sparte);
-    console.log(this.schadenKlasse.id);
-    console.log(this.schadenKlasse.geskz);
-    console.log(this.schadenKlasse.sdnr);
 
     // Das Interface "Schaden" muss einmal initialisiert werden !!
     const newSchaden: Schaden = {
