@@ -1,12 +1,10 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidationErrors} from '@angular/forms';
+import { FormBuilder, FormGroup} from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { debounceTime, map } from 'rxjs/operators';
 import { Suche } from 'src/app/gev/suche';
 import { Schaden } from 'src/app/shared/schaden';
 import { SchadenStoreService } from 'src/app/shared/schaden-store.service';
-import { SchadenKlasse } from 'src/app/shared/schaden.klasse';
 import { EingabeObgrValidator } from '../eingabe-obgr-validator';
 import { SdnrExistService } from '../sdnr-exist.service';
 
@@ -40,9 +38,6 @@ export class SucheStartComponent implements OnInit, OnChanges {
     private fb: FormBuilder,
     private ss: SchadenStoreService,
     private sdnrExistService: SdnrExistService
-
-    // private sdnrExistsValidator: SdnrExistValidatorService,
-    // private dataStorage: DataStore
   ) { }
 
   ngOnInit(): void {
@@ -143,7 +138,6 @@ export class SucheStartComponent implements OnInit, OnChanges {
   // tslint:disable-next-line: typedef
   vnrHolen()
   {
-    console.log('VNR holen');
     this.schaeden$ = this.ss.getAll();
   }
 

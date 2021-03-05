@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
 import { DataStore } from './shared/data-store';
+import { VertragHomeComponent } from './vertrag/vertrag-home/vertrag-home.component';
 
 @NgModule({
   declarations: [

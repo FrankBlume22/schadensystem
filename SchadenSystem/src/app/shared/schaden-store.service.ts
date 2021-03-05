@@ -54,7 +54,7 @@ export class SchadenStoreService {
  }
 
  // String der Schaden-API
- getSingleApiPfad(): string{
+ getSingleApiPfad(): string {
   const apiString = `${this.schadenAPI}`;
   return apiString;
  }

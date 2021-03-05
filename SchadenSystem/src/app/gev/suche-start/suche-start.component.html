@@ -1,12 +1,12 @@
 <sd-schaden-kopf></sd-schaden-kopf>
 
-<h2>Geben Sie bitte Ihren Suchbegriff ein</h2>
+<h2><span>SCHADENSUCHE - </span> Geben Sie bitte Ihren Suchbegriff ein</h2>
 <BR>
 
 <form class="ui form"
   [formGroup]="sucheForm">
 
-  <label><h2><span>SDNR</span></h2></label>
+  <label><h3>SDNR</h3></label>
   <input formControlName="sdnr" type="text"
          (keyup)="taste($event)"
          [readOnly]="sdnrGesperrt"
@@ -17,7 +17,7 @@
   controlName="sdnr">
   </sd-fehlermeldungen>
 
-  <label><h2><span>VNR</span></h2></label>
+  <label><h3>VNR</h3></label>
   <input formControlName="vnr" type="text"
          (keyup)="taste($event)"
          [readOnly]="vnrGesperrt"

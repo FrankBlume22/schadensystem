@@ -1,55 +1,52 @@
 <sd-schaden-kopf></sd-schaden-kopf>
 <BR>
   <div class="content">
-    <h2>Was möchten Sie als nächstes tun?</h2>
+    <h2><span>SCHADENAUSKUNFT - </span> Was wollen Sie als nächstes tun?</h2>
   </div>
 <BR>
-<ng-container *ngIf="schaeden$ | async as schaden">
-      <table>
+<ng-container *ngIf="schaden$ | async as schaden">
+      <div class="content">
+        <h3>Schadendaten allgemein</h3>
+      </div>
+      <BR>
+      <table border="2" >
         <tr>
-          <TD width=100>
-            <h4>GES-KZ</h4>
-          </TD>
-          <TD width=150>
-            <h4>Schadennummer</h4>
-          </TD>
-          <TD width=100>
-            <h4>SD-Typ</h4>
-          </TD>
-          <TD width=100>
-            <h4>SD-Ursache</h4>
-          </TD>
-          <TD width=100>
-            <h4>Sparte</h4>
-          </TD>
-          <TD width=100>
-            <h4>VNR</h4>
-          </TD>
+          <TD width=70><h4>GES-KZ</h4></TD>
+          <TD width=150><h4>Schadennummer</h4></TD>
+          <TD width=100><h4>SD-Typ</h4></TD>
+          <TD width=120><h4>SD-Ursache</h4></TD>
+          <TD width=100><h4>Sparte</h4></TD>
+          <TD width=140><h4>VNR</h4></TD>
         </tr>
-        <tr>
-          <TD width=100>
-            {{ schaden.geskz }}
-          </TD>
-          <TD width=150>
-            {{ schaden.sdnr }}
-          </TD>
-          <TD width=100>
-            {{ schaden.sdTyp}}
-          </TD>
-          <TD width=100>
-            {{ schaden.sdUrsache }}
-          </TD>
-          <TD width=100>
-            {{ schaden.sparte }}
-          </TD>
-          <TD width=100>
-            {{ schaden.vnr }}
-          </TD>
+        <tr align="center">
+          <TD width=100><B>{{ schaden.geskz }}</B></TD>
+          <TD width=150><B>{{ schaden.sdnr }}</B></TD>
+          <TD width=100><B>{{ schaden.sdTyp}}</B></TD>
+          <TD width=100><B>{{ schaden.sdUrsache }}</B></TD>
+          <TD width=100><B>{{ schaden.sparte }}</B></TD>
+          <TD width=100><B>{{ schaden.vnr }}</B></TD>
         </tr>
       </table>
-    </ng-container>
-    <BR>
-    <div *ngIf="schaeden$ | async as schaden; else loading">
+</ng-container>
+<BR>
+<ng-container *ngIf="zustaendig$ | async as zustaendig">
+        <div class="content">
+          <h3>Zuständigkeit</h3>
+        </div>
+        <BR>
+        <table border="2" >
+          <tr>
+            <TD width=200><h4>Bearbeitende Gesellschaft</h4></TD>
+            <TD width=150><h4>Sachbearbeiter</h4></TD>
+          </tr>
+          <tr align="center">
+            <TD width=200><B>{{ zustaendig.bearbGs }}</B></TD>
+            <TD width=150><B>{{ zustaendig.referat }}</B></TD>
+          </tr>
+        </table>
+</ng-container>
+<BR>
+<div *ngIf="schaden$ | async as schaden; else loading">
       <button class="ui tiny red labeled icon button" (click)="removeSchaden()">
         <i class="remove icon"></i> Schaden löschen
       </button>
@@ -61,9 +58,9 @@
       [routerLink]="['../../gev/']">
       <i class="left arrow icon"></i>Zurück zur Suche
     </a>
+</div>
 
-    </div>
-  <ng-template #loading>
-    <div class="ui actice centered inline loader"></div>
-  </ng-template>
+<ng-template #loading>
+  <div class="ui actice centered inline loader"></div>
+</ng-template>
 

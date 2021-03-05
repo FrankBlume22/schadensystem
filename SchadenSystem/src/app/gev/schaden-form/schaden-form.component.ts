@@ -1,6 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
 import { Schaden } from 'src/app/shared/schaden';
 import { SchadenKlasse } from 'src/app/shared/schaden.klasse';
 

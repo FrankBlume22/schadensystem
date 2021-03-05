@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AbstractControl, AsyncValidator, AsyncValidatorFn, ControlContainer, FormControl, ValidationErrors } from '@angular/forms';
+import { FormControl, ValidationErrors } from '@angular/forms';
 import { Observable, of, timer } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { SchadenStoreService } from '../shared/schaden-store.service';
@@ -10,6 +10,7 @@ import { SchadenStoreService } from '../shared/schaden-store.service';
 })
 export class SdnrExistService {
   validationError: any;
+
   constructor(
     private ss: SchadenStoreService,
     private http: HttpClient
@@ -17,7 +18,7 @@ export class SdnrExistService {
 
   // tslint:disable-next-line: typedef
   sucheSchaden(sdnr: string) {
-    const url     = this.ss.getSingleURL();
+    const url = this.ss.getSingleURL();
     // Verzögern
     return timer(200)
       .pipe(

@@ -1,7 +1,4 @@
-import { HttpClient } from '@angular/common/http';
 import { FormControl, ValidationErrors } from '@angular/forms';
-import { SchadenStoreService } from '../shared/schaden-store.service';
-import { SchadenDetailsComponent } from './schaden-details/schaden-details.component';
 
 export class EingabeObgrValidator {
 

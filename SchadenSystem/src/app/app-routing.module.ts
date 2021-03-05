@@ -15,6 +15,10 @@ const routes: Routes = [
   {
     path: 'gev',   // Lazy Loading
     loadChildren: () => import('./gev/gev.module').then(m => m.GevModule)
+  },
+  {
+    path: 'vertrag',   // Lazy Loading
+    loadChildren: () => import('./vertrag/vertrag.module').then(m => m.VertragModule)
   }
 ];
 

@@ -1,25 +1,11 @@
 {
-  "dummy": [
-    {
-      "id": "1",
-      "sdnr": "1"
-    }
-  ],
   "schadenlfdnr": [
     {
       "id": "1",
-      "sdnr": "100001521"
+      "sdnr": "100001821"
     }
   ],
   "schaden": [
-    {
-      "id": "100000121",
-      "sdnr": "100000121",
-      "sdTyp": "TK",
-      "sdUrsache": "741",
-      "sparte": "KS",
-      "vnr": "12345678901112"
-    },
     {
       "id": "100000221",
       "geskz": "00",
@@ -35,26 +21,8 @@
       "sdnr": "100000321",
       "sdTyp": "TK",
       "sdUrsache": "742",
-      "sparte": "KS",
+      "sparte": "SS",
       "vnr": "12345678901234"
-    },
-    {
-      "id": "100000421",
-      "geskz": "00",
-      "sdnr": "100000421",
-      "sdTyp": "AH",
-      "sdUrsache": "01",
-      "sparte": "KS",
-      "vnr": "789"
-    },
-    {
-      "id": "100000521",
-      "geskz": "00",
-      "sdnr": "100000521",
-      "sdTyp": "AA",
-      "sdUrsache": "BB",
-      "sparte": "CC",
-      "vnr": "DD"
     },
     {
       "id": "100000621",
@@ -66,58 +34,13 @@
       "vnr": "12345678901111"
     },
     {
-      "id": "100000721",
-      "geskz": "00",
-      "sdnr": "100000721",
-      "sdTyp": "VK",
-      "sdUrsache": "61",
-      "sparte": "KFZ",
-      "vnr": "777"
-    },
-    {
-      "id": "100000821",
-      "geskz": "00",
-      "sdnr": "100000821",
-      "sdTyp": "5",
-      "sdUrsache": "5",
-      "sparte": "4",
-      "vnr": "5"
-    },
-    {
       "id": "100000921",
       "geskz": "00",
       "sdnr": "100000921",
       "sdTyp": "ST",
-      "sdUrsache": "01",
-      "sparte": "SS",
+      "sdUrsache": "00",
+      "sparte": "HS",
       "vnr": "12345678902222"
-    },
-    {
-      "id": "100001021",
-      "geskz": "00",
-      "sdnr": "100001021",
-      "sdTyp": "s",
-      "sdUrsache": "s",
-      "sparte": "q",
-      "vnr": "q"
-    },
-    {
-      "id": "100001121",
-      "geskz": "00",
-      "sdnr": "100001121",
-      "sdTyp": "ax",
-      "sdUrsache": "ax",
-      "sparte": "ax",
-      "vnr": "ay"
-    },
-    {
-      "id": "100001221",
-      "geskz": "00",
-      "sdnr": "100001221",
-      "sdTyp": "y",
-      "sdUrsache": "y",
-      "sparte": "y",
-      "vnr": "y"
     },
     {
       "id": "100001321",
@@ -129,18 +52,36 @@
       "vnr": "98765432109999"
     },
     {
-      "id": "100001421",
+      "id": "100001521",
       "geskz": "00",
-      "sdnr": "100001421",
-      "sdTyp": "xd",
-      "sdUrsache": "dd",
-      "sparte": "dd",
-      "vnr": "dd"
+      "sdnr": "100001521",
+      "sdTyp": "LW",
+      "sdUrsache": "00",
+      "sparte": "HS",
+      "vnr": "98765432101234"
+    },
+    {
+      "id": "100001621",
+      "geskz": "00",
+      "sdnr": "100001621",
+      "sdTyp": "AH",
+      "sdUrsache": "02",
+      "sparte": "HS",
+      "vnr": "19081234556676"
+    },
+    {
+      "id": "100001721",
+      "geskz": "00",
+      "sdnr": "100001721",
+      "sdTyp": "a",
+      "sdUrsache": "s",
+      "sparte": "SS",
+      "vnr": "s"
     }
   ],
   "zustaendig": [
     {
-      "id1": "1",
+      "id": "1",
       "sparte": "KS",
       "bearbGs": "160",
       "referat": "H160"
