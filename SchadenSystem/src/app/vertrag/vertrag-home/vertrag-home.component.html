@@ -37,12 +37,6 @@
         (click)="suchenObgr()"><i class="right arrow icon"></i>Suchen</button>
      </p>
      </td>
-     <td>
-     <a class="ui tiny red labeled icon button"
-        [routerLink]="['/vertrag/create', '000000000']" routerLinkActive="active">
-        <i class="write icon"></i>Neuen Vertrag anlegen
-     </a>
-    </td>
   </tr>
 </table>
 
@@ -53,29 +47,31 @@
 </ng-container>
 
 <ng-container *ngIf="vertraege$ | async as vertraege">
-  <h3>Bitte wählen Sie Ihren Vertrag</h3>
+  <h3>Bitte wählen Sie Ihren Vertrag zum BearbGs = {{ bearbGs }}</h3>
 </ng-container>
 
 <div class="ui middle aligned selection divided list">
     <ng-container *ngIf="vertrag$ | async as vertrag">
    <!--   <ng-container *ngFor="let s of schaeden; index as i"> -->
         <a [routerLink]="['/vertrag', vertrag.vnr]" routerLinkActive="active">
-          <sd-schaden-liste-item class="item"
+          <sd-vertrag-liste-item class="item"
              [vertrag]="vertrag">
-          </sd-schaden-liste-item>
+          </sd-vertrag-liste-item>
         </a>
       </ng-container>
    <!-- </ng-container> -->
 </div>
 
 <div class="ui middle aligned selection divided list">
-  <ng-container *ngIf="vertraege$ | async as vertraege">
+  <ng-container *ngIf="vertraege$ | async as vertraege ">
     <ng-container *ngFor="let v of vertraege; index as i">
+      <ng-container *ngIf="v.bearbGs ===  bearbGs">
       <a [routerLink]="['/vertrag', v.vnr]" routerLinkActive="active">
-        <sd-schaden-liste-item class="item"
+        <sd-vertrag-liste-item class="item"
            [vertrag]="v">
-        </sd-schaden-liste-item>
+        </sd-vertrag-liste-item>
       </a>
+      </ng-container>
     </ng-container>
   </ng-container>
 </div>

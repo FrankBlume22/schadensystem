@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { VertragHomeComponent } from './vertrag-home/vertrag-home.component';
 import { VertragKopfComponent } from './vertrag-kopf/vertrag-kopf.component';
 import { VertragFehlermeldungenComponent } from './vertrag-fehlermeldungen/vertrag-fehlermeldungen.component';
+import { VertragListeItemComponent } from './vertrag-liste-item/vertrag-liste-item.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { VertragFehlermeldungenComponent } from './vertrag-fehlermeldungen/vertr
   declarations: [
     VertragHomeComponent,
     VertragKopfComponent,
-    VertragFehlermeldungenComponent
+    VertragFehlermeldungenComponent,
+    VertragListeItemComponent
   ]
 })
 export class VertragModule { }

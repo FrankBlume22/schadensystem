@@ -2,6 +2,7 @@ import { Component, OnChanges, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { EingabeObgrValidator } from 'src/app/shared/eingabe-obgr-validator';
 import { Vertrag } from 'src/app/shared/vertrag';
 import { SucheVertrag } from '../suche-vertrag';
 import { VertragStoreService } from '../vertrag-store.service';
@@ -16,8 +17,9 @@ export class VertragHomeComponent implements OnInit {
   suche: SucheVertrag;
 
   // Den/die Scha(e)den lesen wir asynchron ein
-  vertrag$: Observable<Vertrag>;  // Ein Schaden zu einer SDNR
-  vertraege$: Observable<Vertrag[]>;  // Alle Schäden
+  vertrag$: Observable<Vertrag>;      // Ein Schaden zu einer SDNR
+  vertraege$: Observable<Vertrag[]>;  // Alle Schäden im Observable
+  vertraege: Vertrag[];               // Alle Schäden zu einer BearbGs
 
   vnr: string;
   bearbGs: string;
@@ -75,10 +77,14 @@ export class VertragHomeComponent implements OnInit {
   initFormBuilder(){
       this.sucheForm = this.fb.group({
          vnr: [{ value: '', disabled: this.vnrGesperrt }, [
+          EingabeObgrValidator.vnrFormat,
+          EingabeObgrValidator.vnrNum
            ],
            //
          ],
          bearbGs: [{ value: '', disabled: this.bearbGsGesperrt }, [
+          EingabeObgrValidator.bearbGsFormat,
+          EingabeObgrValidator.bearbGsNum
            ],
          ]
     });
@@ -99,19 +105,21 @@ export class VertragHomeComponent implements OnInit {
     if (this.bearbGs.length === 3)
     {
       this.bearbGsHolen();
+      this.vertrag$ = null;
     }
     else
     {
       if (this.vnr.length === 14)
       {
          this.vnrHolen();
+         this.vertraege$ = null;
       }
     }
   }
   // tslint:disable-next-line: typedef
   bearbGsHolen()
   {
-    this.vertrag$ = this.vs.getSingle(this.vnr);
+    this.vertraege$ = this.vs.getAll();
   }
   // tslint:disable-next-line: typedef
   vnrHolen()

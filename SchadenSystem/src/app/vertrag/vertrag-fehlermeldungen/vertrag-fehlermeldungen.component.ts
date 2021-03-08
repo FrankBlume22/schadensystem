@@ -14,9 +14,12 @@ export class VertragFehlermeldungenComponent implements OnInit {
   private allMessages = {
     vnr: {
       vnrFormat: 'Die VNR muss aus 14 Zeichen bestehen.',
+      vnrNum: 'Die VNR muss numerisch sein',
       required: 'Die VNR muss vorhanden sein'
     },
     bearbGs: {
+      bearbGsFormat: 'Die bearbeitende Gesellschaft muss aus 3 Zeichen bestehen.',
+      bearbGsNum: 'Die bearbeitende Gesellschaft muss numerisch sein',
       required: 'Die bearbeitende Gesellschaft muss vorhanden sein'
     }
   };

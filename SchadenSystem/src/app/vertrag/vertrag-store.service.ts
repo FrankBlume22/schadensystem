@@ -23,6 +23,14 @@ export class VertragStoreService {
       );
    }
 
+  getAll(): Observable<Vertrag[]>{
+    return this.schadenHttp.get<Vertrag[]>(`${this.zustaendigAPI}/vertrag`)
+    .pipe(
+      retry(3),
+      catchError(this.errorHandler)
+      );
+  }
+
    private errorHandler(error: HttpErrorResponse): Observable<any>{
     console.error('Fehler aufgetreten im SchadenStoreService');
     return throwError(error);

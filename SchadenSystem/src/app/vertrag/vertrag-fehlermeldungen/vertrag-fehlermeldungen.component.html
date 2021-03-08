@@ -1,1 +1,5 @@
-<p>vertrag-fehlermeldungen works!</p>
+<div class="ui negative message"
+  *ngFor="let msg of errorsForControl()">
+  {{ msg }}
+</div>
+

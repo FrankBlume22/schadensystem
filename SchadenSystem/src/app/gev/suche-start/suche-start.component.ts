@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { Suche } from 'src/app/gev/suche';
 import { Schaden } from 'src/app/shared/schaden';
 import { SchadenStoreService } from 'src/app/shared/schaden-store.service';
-import { EingabeObgrValidator } from '../eingabe-obgr-validator';
+import { EingabeObgrValidator } from '../../shared/eingabe-obgr-validator';
 import { SdnrExistService } from '../sdnr-exist.service';
 
 @Component({
@@ -43,7 +43,7 @@ export class SucheStartComponent implements OnInit, OnChanges {
   ngOnInit(): void {
      this.umgebungSetzen();
      this.initForm();
-  }
+    }
   ngOnChanges(): void {
     this.initForm();
     this.setFormValues(this.suche);
