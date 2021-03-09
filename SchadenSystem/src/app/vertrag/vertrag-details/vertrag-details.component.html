@@ -1,0 +1,49 @@
+<sd-vertrag-kopf></sd-vertrag-kopf>
+<BR>
+  <div class="content">
+    <h2><span>VERTRAGS - AUSKUNFT - </span> Was wollen Sie als nächstes tun?</h2>
+  </div>
+<BR>
+<ng-container *ngIf="vertrag$ | async as vertrag">
+      <div class="content">
+        <h3>Vertragsdaten allgemein</h3>
+      </div>
+      <BR>
+      <table border="2" >
+        <tr>
+          <TD width=150><h4>VNR</h4></TD>
+          <TD width=250><h4>Bearbeitende Gesellschaft</h4></TD>
+          <TD width=150><h4>Partner-Nummer</h4></TD>
+          <TD width=150><h4>Sparte / Risiko</h4></TD>        </tr>
+        <tr align="center">
+          <TD>{{vertrag.vnr}}</TD>
+          <TD>{{vertrag.bearbGs}}</TD>
+          <TD>{{vertrag.partnerNr}}</TD>
+          <TD>{{vertrag.sparte}}</TD>
+            </tr>
+      </table>
+</ng-container>
+<BR>
+<div *ngIf="vertrag$ | async as vertrag; else loading">
+<table>
+  <tr>
+    <TD>
+    <a class="ui tiny yellow labeled icon button"
+    [routerLink]="['../../vertrag/']">
+    <i class="left arrow icon"></i>Zurück zur Suche
+    </a>
+    </TD>
+    <td>
+    <a class="ui tiny red labeled icon button"
+    [routerLink]="['/gev/create', '000000000']" [queryParams]="{vnr: vertrag.vnr}" queryParamsHandling="merge" routerLinkActive="active">
+    <i class="write icon"></i>Neuschaden anlegen
+    </a>
+    </td>
+  </tr>
+</table>
+</div>
+
+<ng-template #loading>
+<div class="ui actice centered inline loader"></div>
+</ng-template>
+

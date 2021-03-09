@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { VertragDetailsComponent } from './vertrag-details/vertrag-details.component';
 import { VertragHomeComponent } from './vertrag-home/vertrag-home.component';
 
 const routes: Routes = [
@@ -8,8 +9,8 @@ const routes: Routes = [
     component: VertragHomeComponent
   },
   {
-    path: 'create/:vnr',
-    component: VertragHomeComponent
+    path: ':vnr',
+    component: VertragDetailsComponent
   }
 
 ];

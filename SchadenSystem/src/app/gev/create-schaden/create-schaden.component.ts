@@ -16,6 +16,7 @@ export class CreateSchadenComponent implements OnInit {
   sdnrLfdnr = '' ;
   sdnrLfdnrNumerisch = 0;
   lfdnr: Lfdnr;
+  vnr = '';
 
   constructor(
     private ss: SchadenStoreService,
@@ -24,7 +25,11 @@ export class CreateSchadenComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.initLeerschaden();
+    this.route.queryParams.subscribe(
+      params => {
+        this.vnr =  params['vnr'];
+        this.initLeerschaden();
+      })
   }
 
   // Wir brauchen den aktuellen INIT, da diese Felder
@@ -34,6 +39,7 @@ export class CreateSchadenComponent implements OnInit {
     this.schaden.geskz = '00';
     this.schaden.sdnr = '999999999';
     this.schaden.id =   '999999999';
+    this.schaden.vnr = this.vnr;
   }
   // tslint:disable-next-line: typedef
   createSchaden(schaden: Schaden) {
