@@ -19,7 +19,7 @@ export class FehlermeldungenComponent implements OnInit {
     },
     vnr: {
       vnrFormat: 'Die VNR muss aus 14 Zeichen bestehen.',
-      required: 'Die VNR muss vorhanden sein'
+      vnrVorhanden: 'Die VNR ist unbekannt'
     },
     sdTyp: {
       required: 'Der Schadentyp muss vorhanden sein'

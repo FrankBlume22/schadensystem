@@ -7,6 +7,7 @@ import { Schaden } from 'src/app/shared/schaden';
 import { SchadenStoreService } from 'src/app/shared/schaden-store.service';
 import { EingabeObgrValidator } from '../../shared/eingabe-obgr-validator';
 import { SdnrExistService } from '../sdnr-exist.service';
+import { VnrExistService } from '../vnr-exist.service';
 
 @Component({
   selector: 'sd-suche-start',
@@ -37,7 +38,8 @@ export class SucheStartComponent implements OnInit, OnChanges {
     private router: Router,
     private fb: FormBuilder,
     private ss: SchadenStoreService,
-    private sdnrExistService: SdnrExistService
+    private sdnrExistService: SdnrExistService,
+    private vnrExistService: VnrExistService
   ) { }
 
   ngOnInit(): void {
@@ -95,8 +97,8 @@ export class SucheStartComponent implements OnInit, OnChanges {
        vnr: [{ value: '', disabled: this.vnrGesperrt }, [
          EingabeObgrValidator.vnrFormat
          ],
-         //
-       ],
+         [this.vnrExistService]
+        ],
      });
   }
 

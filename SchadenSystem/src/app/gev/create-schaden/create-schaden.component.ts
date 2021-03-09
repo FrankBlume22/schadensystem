@@ -17,6 +17,7 @@ export class CreateSchadenComponent implements OnInit {
   sdnrLfdnrNumerisch = 0;
   lfdnr: Lfdnr;
   vnr = '';
+  sparte = '';
 
   constructor(
     private ss: SchadenStoreService,
@@ -28,6 +29,8 @@ export class CreateSchadenComponent implements OnInit {
     this.route.queryParams.subscribe(
       params => {
         this.vnr =  params['vnr'];
+        this.sparte = params['sparte'];
+
         this.initLeerschaden();
       })
   }
@@ -36,10 +39,11 @@ export class CreateSchadenComponent implements OnInit {
   // im Formular nicht gesetzt werden
   // tslint:disable-next-line: typedef
   initLeerschaden(){
-    this.schaden.geskz = '00';
-    this.schaden.sdnr = '999999999';
-    this.schaden.id =   '999999999';
-    this.schaden.vnr = this.vnr;
+    this.schaden.geskz  = '00';
+    this.schaden.sdnr   = '999999999';
+    this.schaden.id     = '999999999';
+    this.schaden.vnr    = this.vnr;
+    this.schaden.sparte = this.sparte;
   }
   // tslint:disable-next-line: typedef
   createSchaden(schaden: Schaden) {

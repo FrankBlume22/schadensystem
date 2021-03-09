@@ -37,12 +37,6 @@
         (click)="suchenObgr()"><i class="right arrow icon"></i>Suchen</button>
      </p>
      </td>
-     <td>
-     <a class="ui tiny red labeled icon button"
-        [routerLink]="['/gev/create', '000000000']" routerLinkActive="active">
-        <i class="write icon"></i>Neuschaden anlegen
-     </a>
-    </td>
   </tr>
 </table>
 
@@ -71,11 +65,13 @@
 <div class="ui middle aligned selection divided list">
   <ng-container *ngIf="schaeden$ | async as schaeden">
     <ng-container *ngFor="let s of schaeden; index as i">
+      <ng-container *ngIf="s.vnr ===  vnr">
       <a [routerLink]="['/gev', s.sdnr]" routerLinkActive="active">
         <sd-schaden-liste-item class="item"
            [schaden]="s">
         </sd-schaden-liste-item>
       </a>
+      </ng-container>
     </ng-container>
   </ng-container>
 </div>

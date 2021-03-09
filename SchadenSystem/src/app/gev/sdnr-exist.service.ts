@@ -20,7 +20,7 @@ export class SdnrExistService {
   sucheSchaden(sdnr: string) {
     const url = this.ss.getSingleURL();
     // Verzögern
-    return timer(200)
+    return timer(100)
       .pipe(
         switchMap(() => {
           // Suche nach der Schadennummer

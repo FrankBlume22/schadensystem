@@ -35,7 +35,8 @@
     </TD>
     <td>
     <a class="ui tiny red labeled icon button"
-    [routerLink]="['/gev/create', '000000000']" [queryParams]="{vnr: vertrag.vnr}" queryParamsHandling="merge" routerLinkActive="active">
+    [routerLink]="['/gev/create', '000000000']" [queryParams]="{vnr: vertrag.vnr, sparte: vertrag.sparte}"
+               queryParamsHandling="merge" routerLinkActive="active">
     <i class="write icon"></i>Neuschaden anlegen
     </a>
     </td>

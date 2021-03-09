@@ -86,6 +86,7 @@ export class VertragHomeComponent implements OnInit {
           EingabeObgrValidator.bearbGsFormat,
           EingabeObgrValidator.bearbGsNum
            ],
+           //
          ]
     });
   }

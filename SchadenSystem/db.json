@@ -2,7 +2,7 @@
   "schadenlfdnr": [
     {
       "id": "1",
-      "sdnr": "100001921"
+      "sdnr": "100002021"
     }
   ],
   "schaden": [
@@ -50,6 +50,15 @@
       "sdUrsache": "21",
       "sparte": "KS",
       "vnr": "12345678904444"
+    },
+    {
+      "id": "100001921",
+      "geskz": "00",
+      "sdnr": "100001921",
+      "sdTyp": "ST",
+      "sdUrsache": "10",
+      "sparte": "HS",
+      "vnr": "12345678902222"
     }
   ],
   "zustaendig": [

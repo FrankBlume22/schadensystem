@@ -63,7 +63,7 @@ export class SchadenFormComponent implements OnInit, OnChanges {
          ],
          // asynchrone Validatoren
        ],
-       sparte: [{ value: '', disabled: false }, [
+       sparte: [{ value: this.schadenKlasse.sparte, disabled: false }, [
         Validators.required
         ],
         // asynchrone Validatoren
