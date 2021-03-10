@@ -26,24 +26,17 @@ export class VnrExistService {
     return this.http.get<Schaden[]>(`${this.ss.getSingleURL()}`).pipe(
         map(response => {
          // this.schaeden$ = response;
-          console.log('Vnr-Tabelle');
-          console.log(response);
-          console.log(response.length);
           for(let i = 0; i < response.length ; i++) {
              if (response[i].vnr === vnr)
              {
                 treffer++;
              }
           }
-          console.log('treffer');
-          console.log(treffer);
           if (treffer > 0) {
             return (null);
           }
           else{
             this.validationError = { vnrVorhanden: { valid: false } };
-            console.log('this.validationError');
-            console.log(this.validationError);
             return (this.validationError);
           }
       }),

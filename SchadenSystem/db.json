@@ -2,7 +2,7 @@
   "schadenlfdnr": [
     {
       "id": "1",
-      "sdnr": "100002021"
+      "sdnr": "100002221"
     }
   ],
   "schaden": [
@@ -20,7 +20,7 @@
       "geskz": "00",
       "sdnr": "100000321",
       "sdTyp": "TK",
-      "sdUrsache": "742",
+      "sdUrsache": "741",
       "sparte": "KS",
       "vnr": "12345678901111"
     },
@@ -59,6 +59,24 @@
       "sdUrsache": "10",
       "sparte": "HS",
       "vnr": "12345678902222"
+    },
+    {
+      "id": "100002021",
+      "geskz": "00",
+      "sdnr": "100002021",
+      "sdTyp": "FE",
+      "sdUrsache": "02",
+      "sparte": "SS",
+      "vnr": "12345678903333"
+    },
+    {
+      "id": "100002121",
+      "geskz": "00",
+      "sdnr": "100002121",
+      "sdTyp": "LW",
+      "sdUrsache": "11",
+      "sparte": "SS",
+      "vnr": "12345678905555"
     }
   ],
   "zustaendig": [
@@ -78,7 +96,7 @@
       "id": "3",
       "sparte": "SS",
       "bearbGs": "560",
-      "referat": "M260"
+      "referat": "M560"
     }
   ],
   "vertrag": [

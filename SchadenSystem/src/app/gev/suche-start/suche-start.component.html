@@ -42,7 +42,7 @@
 
 </form>
 
-<ng-container *ngIf="schaden$ | async as schaeden">
+<ng-container *ngIf="schaden$ | async as schaden">
   <h3>Bitte klicken Sie auf Ihren Schaden</h3>
 </ng-container>
 
@@ -51,15 +51,13 @@
 </ng-container>
 
 <div class="ui middle aligned selection divided list">
-    <ng-container *ngIf="schaden$ | async as schaeden">
-   <!--   <ng-container *ngFor="let s of schaeden; index as i"> -->
-        <a [routerLink]="['/gev', schaeden.sdnr]" routerLinkActive="active">
+    <ng-container *ngIf="schaden$ | async as schaden">
+        <a [routerLink]="['/gev', schaden.sdnr]" routerLinkActive="active">
           <sd-schaden-liste-item class="item"
-             [schaden]="schaeden">
+             [schaden]="schaden">
           </sd-schaden-liste-item>
         </a>
       </ng-container>
-   <!-- </ng-container> -->
 </div>
 
 <div class="ui middle aligned selection divided list">

@@ -19,6 +19,7 @@ export class FehlermeldungenComponent implements OnInit {
     },
     vnr: {
       vnrFormat: 'Die VNR muss aus 14 Zeichen bestehen.',
+      vnrNum: 'Die VNR muss numerisch sein',
       vnrVorhanden: 'Die VNR ist unbekannt'
     },
     sdTyp: {

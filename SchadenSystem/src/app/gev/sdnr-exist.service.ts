@@ -20,7 +20,7 @@ export class SdnrExistService {
   sucheSchaden(sdnr: string) {
     const url = this.ss.getSingleURL();
     // Verzögern
-    return timer(100)
+    return timer(200)
       .pipe(
         switchMap(() => {
           // Suche nach der Schadennummer
@@ -37,6 +37,7 @@ export class SdnrExistService {
     return this.sucheSchaden(sdnr).pipe(
         map((schadenExists: boolean) => {
           if (schadenExists) {
+            console.log('schadenExists ist true');
             return null ;
           }
       }),

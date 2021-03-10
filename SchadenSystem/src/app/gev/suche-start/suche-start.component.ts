@@ -74,6 +74,9 @@ export class SucheStartComponent implements OnInit, OnChanges {
     else{
       this.sdnrGesperrt = false;
     }
+    if (sdnr.length === 9){
+      console.log('Länge erkannt');
+     }
   }
   // tslint:disable-next-line: typedef
   initForm(){
@@ -95,10 +98,11 @@ export class SucheStartComponent implements OnInit, OnChanges {
            [this.sdnrExistService]
        ],
        vnr: [{ value: '', disabled: this.vnrGesperrt }, [
-         EingabeObgrValidator.vnrFormat
+        EingabeObgrValidator.vnrNum,
+        EingabeObgrValidator.vnrFormat
          ],
-         [this.vnrExistService]
-        ],
+           [this.vnrExistService]
+        ]
      });
   }
 
