@@ -119,6 +119,12 @@
               "devServerTarget": "SchadenSystem:serve:production"
             }
           }
+        },
+        "analyze": {
+          "builder": "@ngx-builders/analyze:analyze",
+          "options": {
+            "outputPath": "dist/SchadenSystem"
+          }
         }
       }
     }

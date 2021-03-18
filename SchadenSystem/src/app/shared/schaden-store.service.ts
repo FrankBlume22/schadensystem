@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Schaden } from './schaden';
 import { SchadenRohdaten } from './schaden-rohdaten';
 import { SchadenFactory } from './schaden-factory';
@@ -8,15 +8,19 @@ import { retry, map, catchError } from 'rxjs/operators';
 import { SchadenKlasse } from './schaden.klasse';
 import { Lfdnr } from '../gev/lfdnr';
 import { LfdnrRaw } from '../gev/lfdnr-raw';
+import { API_URL } from 'src/token';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SchadenStoreService {
-  private schadenAPI = 'http://localhost:3000';
-  // private schadenAPI = 'https://my-json-server.typicode.com/FrankBlume22/api'
+  // private schadenAPI = 'http://localhost:3000';
+  // private schadenAPI = 'https://my-json-server.typicode.com/FrankBlume22/api';
 
-  constructor(private schadenHttp: HttpClient) { }
+  constructor(
+    private schadenHttp: HttpClient,
+    @Inject(API_URL) private schadenAPI: string
+    ) { }
 
 
   getAll(): Observable<Schaden[]>{
