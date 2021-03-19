@@ -125,6 +125,10 @@
           "options": {
             "outputPath": "dist/SchadenSystem"
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
     }

@@ -101,7 +101,7 @@ export class SucheStartComponent implements OnInit, OnChanges {
         EingabeObgrValidator.vnrNum,
         EingabeObgrValidator.vnrFormat
          ],
-           [this.vnrExistService]
+         //  [this.vnrExistService]
         ]
      });
   }
