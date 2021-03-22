@@ -19,7 +19,10 @@ import { DataStore } from './shared/data-store';
     HttpClientModule
   ],
   providers: [
-    DataStore
+    DataStore,
+    {provide: 'StringInjectBeispiel', useValue: 'meinStringAusDemProvider'},
+    {provide: 'NumberInjectBeispiel', useValue: 42},
+    {provide: 'BooleanInjectBeispiel', useValue: false}
   ],
   bootstrap: [AppComponent]
 })

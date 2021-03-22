@@ -6,9 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./schaden-kopf.component.css']
 })
 export class SchadenKopfComponent implements OnInit {
-
-  constructor() { }
-
   ngOnInit(): void {
   }
 

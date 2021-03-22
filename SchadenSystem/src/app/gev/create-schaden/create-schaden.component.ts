@@ -11,7 +11,6 @@ import { Lfdnr } from '../lfdnr';
   styleUrls: ['./create-schaden.component.css']
 })
 export class CreateSchadenComponent implements OnInit {
-  // tslint:disable-next-line: new-parens
   schaden = new SchadenKlasse('', '', '', '', '', '', '');
   sdnrLfdnr = '' ;
   sdnrLfdnrNumerisch = 0;
